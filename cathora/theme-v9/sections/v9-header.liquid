@@ -1,0 +1,11 @@
+<header class="v9-header v9">
+<div class="v9-wrap v9-header-top">
+<button class="v9-burger" type="button" data-v9-burger aria-controls="v9-mobile" aria-expanded="false" aria-label="{{ 'v9.ui.menu' | t }}">☰</button>
+<span class="v9-header-note">{{ 'v9.ui.note' | t }}</span>
+<a class="v9-logo" href="{{ routes.root_url }}" aria-label="CATHORA"><img src="{{ 'cathora-logo.png' | asset_url }}" alt="CATHORA" width="1373" height="1145"></a>
+<div class="v9-header-tools">{% render 'v9-localization', fid: 'v9-loc-top' %}<a class="v9-bag" href="{{ routes.cart_url }}">{{ 'v9.ui.bag' | t }} (<span data-v9-count>{{ cart.item_count }}</span>)</a></div>
+</div>
+<nav class="v9-nav" aria-label="CATHORA"><div class="v9-wrap"><a href="{{ routes.root_url }}#lands">{{ 'v9.ui.nav0' | t }}</a><a href="{{ routes.root_url }}#intent">{{ 'v9.ui.nav1' | t }}</a><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/five-elements">{{ 'v9.ui.nav2' | t }}</a><a href="{{ routes.all_products_collection_url }}">{{ 'v9.ui.nav3' | t }}</a><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/brand">{{ 'v9.ui.nav4' | t }}</a></div></nav>
+<div class="v9-mobile" id="v9-mobile"><a href="{{ routes.root_url }}#lands">{{ 'v9.ui.nav0' | t }}</a><a href="{{ routes.root_url }}#intent">{{ 'v9.ui.nav1' | t }}</a><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/five-elements">{{ 'v9.ui.nav2' | t }}</a><a href="{{ routes.all_products_collection_url }}">{{ 'v9.ui.nav3' | t }}</a><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/brand">{{ 'v9.ui.nav4' | t }}</a>{% render 'v9-localization', fid: 'v9-loc-mobile' %}</div>
+</header>
+{% schema %}{"name":"CATHORA v9 header","settings":[]}{% endschema %}

@@ -1,0 +1,10 @@
+<footer class="v9-footer v9"><div class="v9-wrap">
+<div class="v9-footer-grid">
+<div><a href="{{ routes.root_url }}" aria-label="CATHORA"><img src="{{ 'cathora-logo.png' | asset_url }}" alt="CATHORA" width="1373" height="1145" loading="lazy"></a></div>
+<nav aria-label="{{ 'v9.ui.fDiscover' | t }}"><span>{{ 'v9.ui.fDiscover' | t }}</span><a href="{{ routes.root_url }}#lands">{{ 'v9.ui.fLands' | t }}</a><a href="{{ routes.root_url }}#intent">{{ 'v9.ui.fIntent' | t }}</a><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/five-elements">{{ 'v9.ui.fElements' | t }}</a><a href="{{ routes.all_products_collection_url }}">{{ 'v9.ui.fAll' | t }}</a></nav>
+<nav aria-label="{{ 'v9.ui.fWorld' | t }}"><span>{{ 'v9.ui.fWorld' | t }}</span><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/brand">{{ 'v9.ui.fBrand' | t }}</a><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/founder">{{ 'v9.ui.fFounder' | t }}</a></nav>
+<nav aria-label="{{ 'v9.ui.fHelp' | t }}"><span>{{ 'v9.ui.fHelp' | t }}</span><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/care">{{ 'v9.ui.fCare' | t }}</a>{% if shop.shipping_policy.url != blank %}<a href="{{ shop.shipping_policy.url }}">{{ 'v9.ui.fShipping' | t }}</a>{% endif %}<a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact">{{ 'v9.ui.fContact' | t }}</a></nav>
+</div>
+<div class="v9-footer-bottom"><p>{{ 'v9.ui.disclaimer' | t }}</p><span>© {{ "now" | date: "%Y" }} {{ shop.name | escape }}{% if shop.privacy_policy.url != blank %} · <a href="{{ shop.privacy_policy.url }}" style="color:inherit">{{ shop.privacy_policy.title }}</a>{% endif %}</span></div>
+</div></footer>
+{% schema %}{"name":"CATHORA v9 footer","settings":[]}{% endschema %}

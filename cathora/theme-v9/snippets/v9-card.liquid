@@ -1,0 +1,6 @@
+{%- assign card_el = '' -%}{%- for c in card_product.collections -%}{%- case c.handle -%}{%- when 'element-wood' -%}{%- assign card_el = 'wood' -%}{%- when 'fire' -%}{%- assign card_el = 'fire' -%}{%- when 'earth' -%}{%- assign card_el = 'earth' -%}{%- when 'metal' -%}{%- assign card_el = 'metal' -%}{%- when 'water' -%}{%- assign card_el = 'water' -%}{%- endcase -%}{%- endfor -%}
+<a class="v9-card" href="{{ card_product.url }}">
+<span class="v9-square">{% if card_product.featured_image %}{{ card_product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: card_product.title, sizes: '(min-width: 900px) 25vw, 50vw', widths: '360,600,900' }}{% endif %}</span>
+<span class="v9-card-row"><span>{{ card_product.title | escape }}</span><span aria-hidden="true">↗</span></span>
+<span class="v9-card-meta"><span>{% if card_el != '' %}{{ 'v9.ui.mElement' | t }} · {{ 'v9.el.' | append: card_el | append: '.name' | t }}{% endif %}</span><span>{% if card_product.available %}{{ card_product.price | money }}{% else %}{{ 'v9.pp.soldout' | t }}{% endif %}</span></span>
+</a>
