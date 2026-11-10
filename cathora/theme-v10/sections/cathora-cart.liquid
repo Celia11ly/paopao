@@ -1,0 +1,51 @@
+<div class="wrap atlas cathora-cart" data-cart-root><section class="atlas-intro"><p class="eyebrow">CATHORA</p><h1>{{ 'cathora.bag' | t }}</h1></section>{% if cart.item_count == 0 %}<section class="atlas-empty"><h2>{{ 'cathora.empty' | t }}</h2><a class="button dark" href="{{ routes.all_products_collection_url }}">{{ 'cathora.continue' | t }} →</a></section>{% else %}<form action="{{ routes.cart_url }}" method="post" id="cathora-cart"><div class="cathora-cart-items">{% for item in cart.items %}<article class="cathora-cart-item">{% if item.image %}{{ item.image | image_url: width: 360 | image_tag: loading: 'lazy' }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'cathora-cart-placeholder' }}{% endif %}<div><a href="{{ item.url }}"><h2>{{ item.product.title | escape }}</h2></a>{% unless item.product.has_only_default_variant %}<p>{{ item.variant.title | escape }}</p>{% endunless %}{% for property in item.properties %}{% assign initial = property.first | slice: 0 %}{% if property.last != blank and initial != '_' %}<p>{{ property.first | escape }}: {{ property.last | escape }}</p>{% endif %}{% endfor %}{% if item.selling_plan_allocation %}<p>{{ item.selling_plan_allocation.selling_plan.name | escape }}</p>{% endif %}<label for="Cart-Quantity-{{ forloop.index }}" class="cathora-qty-label">{{ 'cathora.quantity' | t }}</label><div class="cathora-qty"><button type="button" data-qty="-1" aria-label="−">−</button><input id="Cart-Quantity-{{ forloop.index }}" type="number" inputmode="numeric" name="updates[]" value="{{ item.quantity }}" min="0" step="1" data-key="{{ item.key }}" aria-label="{{ 'cathora.quantity' | t }} — {{ item.title | escape }}"><button type="button" data-qty="1" aria-label="+">+</button></div><a href="{{ item.url_to_remove }}" data-remove data-key="{{ item.key }}">{{ 'cathora.remove' | t }}</a></div><div>{% if item.original_line_price != item.final_line_price %}<s>{{ item.original_line_price | money_with_currency }}</s>{% endif %}<p>{{ item.final_line_price | money_with_currency }}</p>{% for allocation in item.line_level_discount_allocations %}<p>{{ allocation.discount_application.title | escape }} −{{ allocation.amount | money }}</p>{% endfor %}</div></article>{% endfor %}</div><div class="cathora-cart-total">{% for application in cart.cart_level_discount_applications %}<p>{{ application.title | escape }} −{{ application.total_allocated_amount | money }}</p>{% endfor %}<h2>{{ 'cathora.subtotal' | t }} <span>{{ cart.total_price | money_with_currency }}</span></h2><p>{{ 'cathora.tax_note' | t }}</p><button type="submit" name="update" class="button cathora-update">{{ 'cathora.update' | t }}</button><button type="submit" name="checkout" class="button dark">{{ 'cathora.checkout' | t }}</button></div></form>{% endif %}</div>
+<style>
+.cathora-qty{display:flex;width:max-content;align-items:center;border:1px solid #DDD9D0;margin:8px 0 10px;background:#FBFAF7}
+.cathora-qty button{width:38px;height:38px;border:0;background:none;font-size:18px;line-height:1;cursor:pointer;color:inherit}
+.cathora-qty button:hover{background:#F0EDE6}
+.cathora-qty input{width:46px;height:38px;border:0;border-left:1px solid #DDD9D0;border-right:1px solid #DDD9D0;text-align:center;padding:0;margin:0;background:none;font:inherit;-moz-appearance:textfield;appearance:textfield}
+.cathora-qty input::-webkit-inner-spin-button,.cathora-qty input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.cathora-qty-label{display:block}
+.cathora-js .cathora-update{display:none}
+.shopify-section.is-busy [data-cart-root]{opacity:.55;pointer-events:none;transition:opacity .15s}
+</style>
+<script>
+document.documentElement.classList.add('cathora-js');
+(function () {
+  if (window.__cathoraCart) return; window.__cathoraCart = true;
+  var timer;
+  function root() { return (window.Shopify && Shopify.routes && Shopify.routes.root) || '/'; }
+  function section() { var r = document.querySelector('[data-cart-root]'); return r && r.closest('.shopify-section'); }
+  function change(key, qty) {
+    var s = section(); if (!s) return;
+    var id = s.id.replace('shopify-section-', '');
+    s.classList.add('is-busy');
+    fetch(root() + 'cart/change.js', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: qty, sections: id, sections_url: location.pathname })
+    }).then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (cart) {
+      var html = cart.sections && cart.sections[id];
+      if (html) { var d = document.createElement('div'); d.innerHTML = html; var n = d.querySelector('.shopify-section') || d; s.innerHTML = n.innerHTML; }
+      document.querySelectorAll('[data-v9-count]').forEach(function (c) { c.textContent = cart.item_count; });
+    }).catch(function () { location.reload(); }).finally(function () { s.classList.remove('is-busy'); });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-cart-root] [data-qty]');
+    if (b) {
+      e.preventDefault();
+      var i = b.parentNode.querySelector('input');
+      var v = Math.max(0, (parseInt(i.value, 10) || 0) + parseInt(b.getAttribute('data-qty'), 10));
+      i.value = v; clearTimeout(timer);
+      timer = setTimeout(function () { change(i.getAttribute('data-key'), v); }, 300);
+      return;
+    }
+    var r = e.target.closest('[data-cart-root] [data-remove]');
+    if (r) { e.preventDefault(); change(r.getAttribute('data-key'), 0); }
+  });
+  document.addEventListener('change', function (e) {
+    var i = e.target.closest('[data-cart-root] input[data-key]');
+    if (i) change(i.getAttribute('data-key'), Math.max(0, parseInt(i.value, 10) || 0));
+  });
+})();
+</script>
+{% schema %}{"name": "cathora-cart", "settings": []}{% endschema %}
