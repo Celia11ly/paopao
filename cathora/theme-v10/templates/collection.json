@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "v9-collection",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

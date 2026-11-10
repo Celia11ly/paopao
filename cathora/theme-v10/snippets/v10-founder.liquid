@@ -1,0 +1,6 @@
+<div class="v9">
+<nav class="v9-wrap v9-crumb" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">{{ 'v9.ui.crumbHome' | t }}</a><span aria-hidden="true">/</span><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/brand">{{ 'v9.x.nav.story' | t }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ 'v9.x.nav.founder' | t }}</span></nav>
+<section class="v9-wrap v10-founder"><div class="v10-initial" aria-hidden="true">C</div><div>
+<p class="v9-eyebrow red">{{ 'v9.x.founder.eyebrow' | t }}</p><h1 class="v9-h1 v9-pre" style="font-size:clamp(40px,5vw,60px)">{{ 'v9.x.founder.h1' | t }}</h1>
+{% if page.content != blank %}<div class="v9-serif-p" style="margin-top:28px">{{ page.content }}</div>{% else %}<p class="v9-serif-p" style="margin-top:28px">{{ 'v9.x.founder.p1' | t }}</p><p class="v9-note">{{ 'v9.x.founder.note' | t }}</p>{% endif %}
+<a class="v9-link" style="margin-top:24px" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/brand">{{ 'v9.x.nav.brand' | t }} →</a></div></section></div>

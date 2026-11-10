@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "v9-home",
+      "settings": {
+        "hero_product": "enduring-form"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

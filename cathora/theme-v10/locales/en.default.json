@@ -1,0 +1,604 @@
+{
+  "cathora": {
+    "home": "Home",
+    "jewelry": "Jewelry",
+    "options": "Choose your option",
+    "details": "Details & care",
+    "choose": "Select an option →",
+    "sold_out": "Sold out",
+    "add": "Add to bag →",
+    "quantity": "Quantity",
+    "shipping_returns": "Shipping & returns",
+    "shipping": "Shipping policy",
+    "returns": "Return policy",
+    "bag": "Your bag",
+    "empty": "Your bag is waiting.",
+    "continue": "Continue exploring",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout →",
+    "update": "Update bag",
+    "tax_note": "Taxes and shipping calculated at checkout.",
+    "newsletter": "Email address",
+    "subscribe": "Subscribe",
+    "subscribed": "Thank you. You are on the list.",
+    "country": "Country / region",
+    "language": "Language",
+    "all": "All",
+    "form": "Jewelry type",
+    "color": "Color",
+    "origin": "Cultural direction",
+    "moment": "Occasion",
+    "clear": "Clear filters",
+    "results": "pieces in this selection",
+    "no_results": "No pieces match this combination. Try another selection.",
+    "search": "Search",
+    "search_placeholder": "Find a piece or a story",
+    "sort": "Sort by",
+    "price": "Price",
+    "next": "Next",
+    "previous": "Previous",
+    "not_found": "A little further than expected.",
+    "password": "Store password",
+    "enter": "Enter",
+    "contact_name": "Name",
+    "message": "Message",
+    "send": "Send message",
+    "sent": "Thank you. We have received your message.",
+    "empty_soon_title": "This collection is still taking shape.",
+    "empty_soon_body": "Pieces will appear here once confirmed. In the meantime, try another way in.",
+    "empty_filter_title": "Nothing matches this combination.",
+    "empty_filter_body": "Try a different selection, or browse everything.",
+    "empty_browse": "Browse all pieces",
+    "empty_suggest": "You might like"
+  },
+  "v9": {
+    "ui": {
+      "note": "A prayer from Cathay",
+      "eyebrow": "CATHORA / Jewelry from the sacred lands",
+      "h1": "A prayer\nfrom Cathay.",
+      "lede": "Before you ever heard its name, it was already on its way to you. Pieces shaped by sacred mountains, old wisdom, and the wish you carry.",
+      "cta1": "Enter the Blessed Lands",
+      "cta2": "Find your element",
+      "landsEyebrow": "The Blessed Lands · 福地",
+      "landsH": "Five places where people\nhave gone to make a wish.",
+      "landsP": "For a thousand years, people have climbed these stone steps asking for the oldest things: safety on the road, a child in good health, a year of good fortune. Each chapter carries the legend of one place.",
+      "enter": "Enter",
+      "piecesH": "Objects to make your own.",
+      "piecesLink": "Explore all pieces →",
+      "intentEyebrow": "By intention · 心愿",
+      "intentH": "What are you wishing for?",
+      "elEyebrow": "The Five Elements · 五行",
+      "elH": "Everything breathes.\nEverything turns.",
+      "elP": "Water feeds wood, wood feeds fire, fire returns to earth, earth gives birth to metal, metal calls back the water. The old sages believed every life turns within this wheel — and that what you keep close can lean it, gently, toward the light.",
+      "storyEyebrow": "The world of CATHORA",
+      "storyH": "One for every worry\nthe heart can hold.",
+      "story1": "Dawn, in the mountains of eastern China. Mist rises from the valley like the breath of a sleeping animal. Somewhere above the pines, a bell — once, then again, one hundred and eight times. By the last note, the mountain has taken them all.",
+      "story2": "Cathay was the West's old name for China. Ora is Latin, to pray.",
+      "storyL1": "Our brand story ↗",
+      "storyL2": "The founder's perspective ↗",
+      "newsH": "Letters from the mountain",
+      "newsP": "New moons, solar terms and the turning of the year — a quiet note when the season changes, and first word of each new chapter.",
+      "email": "Email address",
+      "emailPh": "Your email address",
+      "subscribe": "Subscribe",
+      "fDiscover": "Discover",
+      "fWorld": "The world of CATHORA",
+      "fHelp": "Help",
+      "disclaimer": "CATHORA pieces are rooted in Chinese Buddhist and Taoist cultural traditions and are intended for personal reflection and meaning. They are not a substitute for medical, financial or professional advice.",
+      "crumbHome": "Home",
+      "crumbLands": "The Blessed Lands",
+      "mIntention": "Intention",
+      "mElement": "Element",
+      "mKnown": "Known for",
+      "emptyH": "The pieces of this chapter are being prepared.",
+      "emptyP": "Leave your email and we will write to you when they arrive.",
+      "notify": "Notify me",
+      "otherLands": "Other chapters",
+      "back": "← All Blessed Lands",
+      "nav0": "The Blessed Lands",
+      "nav1": "By intention",
+      "nav2": "The Five Elements",
+      "nav3": "Jewelry by form",
+      "nav4": "The world of CATHORA",
+      "elCta": "Read your elements",
+      "bag": "Bag",
+      "subscribed": "Thank you. The next letter will find you.",
+      "piecesFrom": "Pieces from {{ land }}",
+      "chapter": "Chapter {{ n }}",
+      "fLands": "The Blessed Lands",
+      "fIntent": "By intention",
+      "fElements": "The Five Elements",
+      "fAll": "Jewelry by form",
+      "fBrand": "Our brand story",
+      "fFounder": "The founder's perspective",
+      "fCare": "Ritual & care",
+      "fShipping": "Shipping & returns",
+      "fContact": "Contact",
+      "menu": "Menu",
+      "close": "Close",
+      "allPieces": "All pieces",
+      "heroCap": "Enduring Form pendant"
+    },
+    "ways": {
+      "w1": {
+        "title": "The Blessed Lands",
+        "sub": "福地",
+        "line": "Follow a sacred place"
+      },
+      "w2": {
+        "title": "By intention",
+        "sub": "心愿",
+        "line": "Begin with your wish"
+      },
+      "w3": {
+        "title": "The Five Elements",
+        "sub": "五行",
+        "line": "Find your element"
+      },
+      "w4": {
+        "title": "The Daily Pause",
+        "sub": "日常",
+        "line": "Worn close, every day"
+      }
+    },
+    "intent": {
+      "i1": {
+        "char": "安",
+        "name": "Peace & Protection",
+        "line": "Safety on the road, and at home."
+      },
+      "i2": {
+        "char": "静",
+        "name": "Calm",
+        "line": "For a mind that will not settle."
+      },
+      "i3": {
+        "char": "慧",
+        "name": "Clarity",
+        "line": "When the way ahead is unclear."
+      },
+      "i4": {
+        "char": "缘",
+        "name": "Love",
+        "line": "For the thread that ties two people."
+      },
+      "i5": {
+        "char": "福",
+        "name": "Good Fortune",
+        "line": "A year that turns your way."
+      },
+      "i6": {
+        "char": "始",
+        "name": "New Beginnings",
+        "line": "For the first step of something."
+      }
+    },
+    "promise": {
+      "p1": {
+        "title": "An origin in every box",
+        "line": "A card telling you where your piece comes from and what it means."
+      },
+      "p2": {
+        "title": "Natural materials",
+        "line": "Real woods, seeds and stones. Never dyed glass."
+      },
+      "p3": {
+        "title": "Returned to the temples",
+        "line": "Part of every purchase goes back to the temple communities."
+      }
+    },
+    "lands": {
+      "putuo": {
+        "subtitle": "Island of Compassion",
+        "legend": "Where the tide is said to chant, and sailors once prayed for home.",
+        "intention": "Safe passage · Protection",
+        "element": "Water",
+        "known": "The sea, the tide caves, Guanyin",
+        "lead": "An island at the edge of the East China Sea, where the land runs out and the prayers begin.",
+        "close": "This chapter is for safe passage, and for the ones you wait for.",
+        "s1": "More than a thousand years ago, a monk from Japan set sail for home with a statue of Guanyin, the bodhisattva who hears the cries of the world. Near this island the sea rose and would not let him pass. Each time he tried, the waves turned him back. So he left her here — and she is called, still, the Guanyin Who Would Not Leave.",
+        "s2": "In the caves along the shore, the tide breaks with a sound like chanting. Fishermen once listened to it before they put out to sea. Their wives climbed the hills before dawn, watched the horizon, and asked for only one thing: that the boats come home.",
+        "s3": "At first light the sun rises straight out of the water, and for a moment the whole sea turns the colour of sunstone.",
+        "num": "I"
+      },
+      "lingyin": {
+        "subtitle": "Hidden Spirit",
+        "legend": "A peak that flew from a distant land, and chose to stay.",
+        "intention": "Clarity · Wisdom",
+        "element": "Wood",
+        "known": "The Peak That Flew Here, stone Buddhas, old trees",
+        "lead": "In the hills west of the lake, a peak stands where it does not belong.",
+        "close": "This chapter is for clarity, and for the quiet voice that already knows.",
+        "s1": "Some seventeen centuries ago, a monk named Huili came here from India. He looked up at the peak and was astonished, for it was a mountain from his homeland. \"When did it fly here?\" he asked. It has been called the Peak That Flew Here ever since. At its foot he founded a temple and named it Lingyin — the place where the spirit hides.",
+        "s2": "The spirit is hiding still. Carved into the rock, stone Buddhas smile in the half-dark. Incense drifts through the old trees. People come here to ask for wisdom, for an answer, for a sign that they are on the right road.",
+        "s3": "",
+        "num": "II"
+      },
+      "jingshan": {
+        "subtitle": "Mountain of Tea and Zen",
+        "legend": "A single bowl of tea crossed the sea and became a way of life.",
+        "intention": "Calm · Presence",
+        "element": "Wood",
+        "known": "Zen, tea, bamboo forests",
+        "lead": "On a mountain north-west of Hangzhou, the path climbs through bamboo so dense that the light turns green.",
+        "close": "This chapter is for calm, and for doing one thing with your whole heart.",
+        "s1": "For centuries this was one of the great Zen temples of the south. Monks grew tea on the slopes and served it to guests in a slow, silent ceremony: water heated, tea whisked, a bowl passed from hand to hand.",
+        "s2": "Monks from Japan crossed the sea to study here. When they went home they carried the bowls, the seeds and the silence with them. In time it became the Way of Tea.",
+        "s3": "Everything that matters can fit in one bowl. That is what the mountain teaches.",
+        "num": "III"
+      },
+      "tiantai": {
+        "subtitle": "Terrace of Heaven",
+        "legend": "A mountain named for the stars it was said to stand beneath.",
+        "intention": "New beginnings · The path ahead",
+        "element": "Earth",
+        "known": "Layered peaks, an ancient temple, the poet Cold Mountain",
+        "lead": "A mountain of folded peaks, named by the ancients for the Terrace stars it was said to stand beneath.",
+        "close": "This chapter is for new beginnings, and for the path you have not taken yet.",
+        "s1": "At its foot stands a temple founded more than fourteen centuries ago, beside a stream that has never stopped running. A school of Buddhism was born here, and travelled to Japan and Korea, where it is still alive today.",
+        "s2": "Long ago, two laughing strangers were often seen at the temple kitchen door. One of them was the poet Hanshan — Cold Mountain — who wrote his poems on rocks, on trees and on walls, then walked into the mountain without leaving a name.",
+        "s3": "Some journeys begin by going up.",
+        "num": "IV"
+      },
+      "emei": {
+        "subtitle": "Mountain of Golden Light",
+        "legend": "Above a sea of clouds, pilgrims still wait for a halo of light.",
+        "intention": "Good fortune · Light",
+        "element": "Metal",
+        "known": "The Golden Summit, the sea of clouds, the Buddha's light",
+        "lead": "In the west of China, a mountain rises through the clouds to a summit of gold.",
+        "close": "This chapter is for good fortune, and for the light that finds you when you have climbed far enough.",
+        "s1": "Pilgrims climb for days to reach it. At the top they stand at the edge of a sea of cloud, and wait. Sometimes, when the sun is behind them, a ring of rainbow light appears on the clouds below — and inside it, their own shadow, haloed. The people of the mountain call it the Buddha's light. They say it does not come to everyone.",
+        "s2": "Thirteen centuries ago, the poet Li Bai watched a half-moon of autumn hang over this mountain and wrote it into a poem that is still taught in China's schools.",
+        "s3": "",
+        "num": "V"
+      },
+      "longmen": {
+        "subtitle": "A Thousand Years in Stone",
+        "legend": "On the cliffs above the Yi River, a hundred thousand Buddhas have sat in silence for fifteen centuries.",
+        "intention": "Endurance · Resolve",
+        "element": "Earth",
+        "known": "The Vairocana Buddha, the Yi River, cave carvings",
+        "lead": "South of Luoyang, the Yi River runs between two hills that face each other like the towers of a gate. The ancients called it the Dragon Gate.",
+        "s1": "From the Northern Wei to the Tang, for more than four hundred years, craftsmen cut into the limestone, stroke by stroke, until more than a hundred thousand figures filled the cliffs — the smallest two centimetres high, the largest seventeen metres.",
+        "s2": "The great Vairocana Buddha of Fengxian is said to have been carved in the likeness of an empress. Eyes lowered, half smiling, she watches the river — and everyone who looks up at her.",
+        "s3": "Fifteen hundred years of wind and rain, and the stone remembers every cut. Some things are meant to be made slowly, one mark at a time.",
+        "close": "This chapter is for endurance, and for the things that take time to become.",
+        "num": "VI"
+      },
+      "whitehorse": {
+        "subtitle": "The First Temple",
+        "legend": "A white horse carried the scriptures across thousands of miles, and the teaching arrived in China.",
+        "intention": "Connection · Journeys",
+        "element": "Metal",
+        "known": "China's first temple, the Qiyun Pagoda, the white horse",
+        "lead": "In the year 68, outside the walls of Luoyang, China built its first Buddhist temple.",
+        "s1": "The story goes that Emperor Ming dreamed one night of a golden figure, glowing, flying in from the west. He sent envoys to find it, and far away they met two monks and asked them to come east.",
+        "s2": "A white horse carried the scriptures and images all the way back to Luoyang beside them. To remember it, the new temple was named for the horse.",
+        "s3": "A dream, a long road, two strangers and a horse. Perhaps every meeting that matters begins like this.",
+        "close": "This chapter is for journeys, and for the people who travelled far to find you.",
+        "num": "VII"
+      },
+      "wudang": {
+        "subtitle": "Mountain of Taiji",
+        "legend": "A Taoist mountain in the clouds, where Tai Chi drew its first circle.",
+        "intention": "Balance · Protection",
+        "element": "Fire",
+        "known": "The Golden Hall, the Purple Cloud Palace, Tai Chi",
+        "lead": "In the mountains of Hubei, seventy-two peaks all seem to bow toward one point: the gilded bronze hall on the summit of Heaven's Pillar.",
+        "s1": "Taoists believe the world turns between yin and yang — stillness and motion, again and again. Legend says a hermit here once watched a magpie fight a snake, softness against strength, and in that moment understood Tai Chi.",
+        "s2": "Six hundred years ago an emperor ordered palaces built across the mountain, and the summit hall was cast in bronze and covered in gold. In summer storms lightning strikes its roof in a sea of fire — and the hall stands untouched.",
+        "s3": "The soft overcomes the hard; stillness masters motion. Real strength is often just staying steady.",
+        "close": "This chapter is for balance, and for standing steady in the storm.",
+        "num": "VIII"
+      }
+    },
+    "el": {
+      "wood": {
+        "name": "Wood",
+        "kw": "Growth · Courage · Beginnings",
+        "desc": "Wood is the green force of spring — the shoot that splits the stone. It rises, it reaches, it begins again. Those born under Wood are said to carry the courage to start.",
+        "materials": "Jade · green aventurine · natural wood",
+        "line": "Growth, the courage to begin"
+      },
+      "fire": {
+        "name": "Fire",
+        "kw": "Warmth · Vitality · Good fortune",
+        "desc": "Fire is summer at noon, a lamp in a dark room. It warms, it gathers people, it lights the way. Fire is said to bring brightness, passion, and the luck that follows those who shine.",
+        "materials": "Sunstone · red agate · garnet",
+        "line": "Warmth, a light that draws"
+      },
+      "earth": {
+        "name": "Earth",
+        "kw": "Steadiness · Trust · Abundance",
+        "desc": "Earth is the ground beneath every season — patient, generous, holding everything up. Earth is said to bring stability, trust, and a harvest that comes in its own time.",
+        "materials": "Tiger's eye · citrine · yellow jade",
+        "line": "Steadiness, a place to stand"
+      },
+      "metal": {
+        "name": "Metal",
+        "kw": "Clarity · Resolve · Protection",
+        "desc": "Metal is autumn air, a bell's clear note, the edge of a blade. It cuts away what is not needed. Metal is said to bring clarity, resolve, and a clean kind of protection.",
+        "materials": "Clear quartz · moonstone · silver",
+        "line": "Clarity, a clean edge"
+      },
+      "water": {
+        "name": "Water",
+        "kw": "Wisdom · Flow · Intuition",
+        "desc": "Water is winter and the deep sea. It is soft, yet it wears through stone; it takes the shape of everything, and keeps its own. Water is said to bring wisdom, intuition, and the patience to flow.",
+        "materials": "Obsidian · aquamarine · black onyx",
+        "line": "Wisdom, patience to flow"
+      }
+    },
+    "eu": {
+      "eyebrow": "The Five Elements · 五行",
+      "h1": "Everything breathes.\nEverything turns.",
+      "intro": "Water feeds wood, wood feeds fire, fire returns to earth, earth gives birth to metal, metal calls back the water. In the old Chinese calendar, every year belongs to one of the five — and so, it is said, does everyone born in it.",
+      "calcH": "Read your elements",
+      "calcBtn": "Reveal my elements",
+      "invalid": "Please enter a valid date of birth between 1850 and 2100.",
+      "chooseH": "Explore the five",
+      "materials": "Traditionally associated with",
+      "piecesH": "Pieces of",
+      "emptyP": "Pieces of this element are being prepared.",
+      "see": "View piece →",
+      "dateLabel": "Date of birth",
+      "timeLabel": "Time of birth (optional)",
+      "pillarsH": "Your four pillars",
+      "pYear": "Year",
+      "pMonth": "Month",
+      "pDay": "Day",
+      "pHour": "Hour",
+      "noHour": "Unknown",
+      "dmH": "Your Day Master",
+      "dmNote": "The heavenly stem of your birth day — the element that is most truly you.",
+      "strengthH": "Strength",
+      "balanceH": "Your balance of the five",
+      "favH": "Your favourable elements",
+      "favPrimary": "Primary",
+      "favSecondary": "Supporting",
+      "favStrong": "Your Day Master is strong. The old masters would balance it with elements that let its energy flow outward.",
+      "favWeak": "Your Day Master is gentle. The old masters would support it with elements that nourish and stand beside it.",
+      "recH": "Pieces for your favourable elements",
+      "note": "This is a traditional reading based on the solar calendar and the twenty-four solar terms, using your device's time zone. It is offered for reflection, not prediction.",
+      "lv_strong": "Strong · 身强",
+      "lv_slightlyStrong": "Slightly strong · 偏强",
+      "lv_slightlyWeak": "Slightly gentle · 偏弱",
+      "lv_weak": "Gentle · 身弱",
+      "calcP": "Enter your date of birth. Add the time if you know it — it completes the fourth pillar.",
+      "piecesOf": "Pieces of {{ el }}",
+      "viewAll": "View the collection →"
+    },
+    "dm": {
+      "s0": "Yang Wood — the tall tree",
+      "s1": "Yin Wood — the flowering vine",
+      "s2": "Yang Fire — the sun",
+      "s3": "Yin Fire — the candle flame",
+      "s4": "Yang Earth — the mountain",
+      "s5": "Yin Earth — the garden soil",
+      "s6": "Yang Metal — the sword",
+      "s7": "Yin Metal — the jewel",
+      "s8": "Yang Water — the ocean",
+      "s9": "Yin Water — the rain"
+    },
+    "pp": {
+      "material": "Material",
+      "element": "Element",
+      "land": "The Blessed Lands",
+      "add": "Add to bag",
+      "adding": "Adding…",
+      "added": "Added to bag ✓",
+      "qty": "Quantity",
+      "size": "Size guide",
+      "also": "You may also like",
+      "soldout": "Sold out",
+      "option": "Option",
+      "landLink": "Read the story of {{ land }} →",
+      "elementLink": "More pieces of {{ el }} →",
+      "readingLink": "Read your elements →",
+      "note": "CATHORA pieces are rooted in Chinese cultural traditions and are intended for personal reflection and meaning. They are not a substitute for medical, financial or professional advice.",
+      "image": "Image",
+      "shipping": "Shipping calculated at checkout."
+    },
+    "x": {
+      "nav": {
+        "shop": "Shop",
+        "blessings": "Blessings",
+        "lands": "Sacred Lands",
+        "elements": "Five Elements",
+        "story": "Our Story",
+        "byType": "By type",
+        "byElement": "By element",
+        "picks": "Edits",
+        "all": "All pieces",
+        "bracelets": "Bracelets",
+        "necklaces": "Necklaces & pendants",
+        "everyday": "Everyday",
+        "gifting": "Gifts",
+        "allBlessings": "All blessings →",
+        "allLands": "All sacred lands →",
+        "brand": "Our story",
+        "founder": "The founder",
+        "care": "Ritual & care",
+        "faq": "FAQ",
+        "reading": "Read your elements →"
+      },
+      "home": {
+        "blessEyebrow": "Shop by blessing · 祈愿",
+        "blessH": "What are you wishing for?",
+        "blessP": "Begin with a wish, and find the piece that answers it.",
+        "shopNow": "Shop",
+        "bestH": "Most loved",
+        "landsH": "Eight sacred lands,\neight legends.",
+        "landsP": "For centuries, people have climbed these stone steps. Swipe to enter the story of each place.",
+        "prev": "Previous",
+        "next": "Next",
+        "heroCta1": "Shop all pieces",
+        "heroCta2": "Shop by blessing"
+      },
+      "pdp": {
+        "size": "Wrist size",
+        "sizeS": "S · 15 cm (wrist 13–14 cm)",
+        "sizeM": "M · 16.5 cm (wrist 14.5–15.5 cm)",
+        "sizeL": "L · 18 cm (wrist 16–17 cm)",
+        "sizeHelp": "Not sure? Measure your wrist with a soft tape and add 1.5 cm.",
+        "trust1": "Worldwide shipping · dispatched in 1–3 business days",
+        "trust2": "30-day returns",
+        "trust3": "Gift-boxed in rice paper, with an origin card",
+        "blessFor": "Blessing",
+        "tabStory": "Meaning & story",
+        "tabSpecs": "Specifications",
+        "tabShip": "Shipping & delivery",
+        "tabReturns": "Returns & exchanges",
+        "tabCare": "Ritual & care",
+        "tabBox": "Packaging",
+        "tabFaq": "FAQ",
+        "shipIntro": "Every order leaves our studio in Singapore within 1–3 business days, with tracking.",
+        "shipRegion": "Region",
+        "shipMethod": "Method",
+        "shipTime": "Delivery",
+        "shipCost": "Cost",
+        "shipSG": "Singapore",
+        "shipIntl": "International (US, CA, UK, EU, AU, NZ, JP, KR, HK, MO, TW, SEA, UAE)",
+        "shipStd": "Standard",
+        "shipExp": "Express",
+        "shipSGstd": "2–4 business days",
+        "shipSGexp": "1–2 business days",
+        "shipIstd": "7–15 business days",
+        "shipIexp": "3–7 business days",
+        "shipNote": "Shipping is shown in your local currency at checkout. Some countries may charge import duties, payable by the recipient.",
+        "returns": "Within 30 days of delivery, unworn pieces in their original packaging (with the origin card) can be returned or exchanged. Please contact us first for the return address. We cover return shipping for any quality issue. Custom-sized pieces are final sale.",
+        "care1": "The first time: in the morning, facing the light, take one breath and hold your wish in mind.",
+        "care2": "Take it off to bathe, swim or exercise. Keep it away from perfume and cleaning products.",
+        "care3": "Wipe gently with a soft dry cloth. Silver can be brought back with a polishing cloth.",
+        "care4": "When not wearing it, keep it in its pouch or box, away from other jewelry.",
+        "box": "Each piece is wrapped in rice paper and set in a cloth gift box, with an origin card telling you which sacred land it comes from, its element, and the blessing it carries. Ready to give, no extra wrapping needed.",
+        "detailH": "In detail",
+        "detailP": "A closer look at texture, light, and how it wears.",
+        "blessingTagsH": "Blessings for this piece"
+      },
+      "brand": {
+        "eyebrow": "Our Story · 品牌故事",
+        "h1": "A prayer from Cathay.",
+        "nameH": "The name",
+        "name1": "Cathay was the old Western name for China — the word Marco Polo used. Silk, tea, and mountains wrapped in mist.",
+        "name2": "Ora is Latin for \"pray.\" Where the two meet is Cathora — a prayer from Cathay.",
+        "storyH": "Yuan · 缘",
+        "p1": "Before you ever heard its name, it was already on its way to you. The Chinese call this yuan — the thread of fate that ties a person to a place, a moment, a wish.",
+        "p2": "Dawn, in the mountains of eastern China. Mist rises from the valley like the breath of a sleeping animal. Somewhere above the pines, a bell — once, then again, one hundred and eight times. One for every worry the heart can hold. By the last note, the mountain has taken them all.",
+        "p3": "For a thousand years, people have climbed these stone steps with empty hands and open hearts, asking for the oldest things. Safety on the road. A child in good health. A year of good fortune. They tied red threads to the branches, turned beads between their fingers, and walked back down believing that luck, like water, finds those who make room for it.",
+        "p4": "We carry that belief to you. Wood that has gathered its fragrance for decades. Seeds named for the tree where the Buddha awoke. Stones the mountain kept in its dark heart for ten thousand years — each long believed to hold a blessing, a protection, a quiet turning toward the good.",
+        "p5": "A circle has no beginning and no end. Neither does good fortune. It never stays; it only moves — from hand to hand, from one wish to the next. Wear it, and let it move toward you.",
+        "p6": "We cannot promise you luck. But we know where it has always been waited for: in stillness, in intention, in a small circle of beads resting against the pulse of your wrist.",
+        "qiH": "Qi and the Five Elements",
+        "q1": "Everything breathes. The mountain breathes in mist. The river breathes in light. A stone asleep for ten thousand years breathes so slowly that only the patient can hear it. The ancient Chinese called this breath qi, and believed it moves through all things — through the earth, through the stars, through you.",
+        "q2": "Water nourishing wood, wood feeding fire, fire returning to earth, earth giving birth to metal, metal calling back the water — five elements in an endless wheel, and every life turning within it. When the wheel turns your way, they called it good fortune.",
+        "q3": "So we choose each material by its element and by the energy it has long been said to carry. The Book of Changes says nothing stays still: fortune rises, falls, and rises again. A bracelet cannot hold back the tide. But each time it warms against your skin, it can remind you to turn with it — toward the light.",
+        "qiCta": "Read your elements →",
+        "princH": "Three things we believe",
+        "pr1t": "A blessing should have an origin",
+        "pr1": "Cultural history, collaboration records and creative interpretation are different things. We explain each clearly: where a piece comes from, what it means, and how it was made.",
+        "pr2t": "Jewelry first",
+        "pr2": "Form, finish, proportion and fit give meaning a physical presence. It has to be something you want to wear every day.",
+        "pr3t": "The meaning is yours",
+        "pr3": "A piece can mark a change, carry a thought, or simply become the one you love to wear. Not a promise of luck — a reminder to pause.",
+        "founderH": "The person behind the choices",
+        "founderP": "Why these mountains, why jewelry, and what is worth carrying down from them.",
+        "founderLink": "The founder's perspective →",
+        "creditsH": "Image & cultural sources",
+        "creditsP": "Photographs of the sacred lands come from Wikimedia Commons and are used under their respective licenses, cropped for display. No institutional endorsement is implied."
+      },
+      "founder": {
+        "eyebrow": "The founder · 主理人",
+        "h1": "Personal, before\nit became a brand.",
+        "p1": "This space is for the founder's own words: the first time in those mountains, why jewelry, and what the founder hopes the wearer will carry.",
+        "note": "Portrait and biography await the founder's contribution. No personal history has been invented here."
+      },
+      "care": {
+        "h1": "Ritual & care",
+        "lead": "The longer a piece stays with you, the more it becomes yours.",
+        "sizeH": "Size guide",
+        "sizeP": "Measure around your wrist bone with a soft tape (or a string and a ruler). Add 1.5 cm to your wrist measurement for a comfortable fit, or 2 cm for a looser one.",
+        "ritualH": "A small ritual",
+        "careH": "Everyday care",
+        "chartWrist": "Wrist",
+        "chartSize": "Bracelet size"
+      },
+      "bless": {
+        "health": {
+          "name": "Health",
+          "line": "For a body at ease, and breath that flows.",
+          "desc": "The ancients said a person breathes with heaven and earth. Wood brings growth, water brings nourishment — these pieces lean on both, for steady sleep, a lighter step, and a little strength to spare each day.",
+          "char": "康"
+        },
+        "career": {
+          "name": "Career",
+          "line": "For a clear road, and work that bears fruit.",
+          "desc": "Water stands for wisdom, earth for trust, fire for the courage to begin. For an interview, a promotion, a new venture or a change of road — a reminder to keep close at hand.",
+          "char": "业"
+        },
+        "wealth": {
+          "name": "Wealth",
+          "line": "For abundance that flows like water — steady, and long.",
+          "desc": "Metal gives birth to water, and water is wealth. The warm light of sunstone and the clear shine of silver have long been worn to invite abundance — not sudden riches, but a stream that keeps on flowing.",
+          "char": "财"
+        },
+        "love": {
+          "name": "Love",
+          "line": "For the thread that ties two people.",
+          "desc": "The Chinese believe in yuan — an invisible red thread already tied between two people. The warmth of fire and the softness of water, for those still waiting, and those holding on.",
+          "char": "缘"
+        },
+        "peace": {
+          "name": "Peace & Safety",
+          "line": "Safety on the road, and peace at home.",
+          "desc": "Ping'an — peace and safety — are the two words most asked for in the temples. For a long journey, a new home, a newborn, a parent's birthday: pieces for the people you carry in your heart.",
+          "char": "安"
+        },
+        "retrograde": {
+          "name": "Retrograde Protection",
+          "line": "For the seasons when everything goes sideways.",
+          "desc": "The Book of Changes says: when things reach their end, they change; when they change, they flow again. When one thing after another goes wrong, metal's resolve and earth's steadiness remind you to stand firm and wait — the wheel will turn back.",
+          "char": "转"
+        }
+      },
+      "prom": {
+        "p1": {
+          "t": "Worldwide shipping",
+          "l": "30 countries and regions. Standard 7–15 days, express 3–7."
+        },
+        "p2": {
+          "t": "30-day returns",
+          "l": "Unworn, in original packaging, within 30 days."
+        },
+        "p3": {
+          "t": "An origin in every box",
+          "l": "Where your piece comes from, and what it means."
+        },
+        "p4": {
+          "t": "Returned to the temples",
+          "l": "Part of every purchase returns to the temple communities."
+        }
+      },
+      "faq": {
+        "q1": {
+          "q": "Are the pieces blessed or consecrated?",
+          "a": "We don't make that claim. Each design draws on the prayer traditions of Chinese mountain temples, we work alongside temple communities, and part of every purchase returns to them. When a piece is part of a real ceremony, we will say exactly where and when."
+        },
+        "q2": {
+          "q": "Are the materials natural?",
+          "a": "Yes. Only natural woods, seeds and stones, and 925 silver — never dyed glass or plastic. The exact material of each piece is listed under Specifications."
+        },
+        "q3": {
+          "q": "What if the cord breaks?",
+          "a": "We use a high-tension elastic cord that lasts with normal wear. Roll it on over your palm rather than stretching it. If it ever breaks, contact us and we'll help."
+        },
+        "q4": {
+          "q": "Can I send it as a gift?",
+          "a": "Every piece arrives gift-boxed with its origin card. Leave a message in the order note at checkout and we'll handwrite it on a card — no prices are included in the parcel."
+        }
+      }
+    }
+  }
+}
