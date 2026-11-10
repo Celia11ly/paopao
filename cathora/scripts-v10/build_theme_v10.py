@@ -312,7 +312,7 @@ def product():
 {% endform %}
 <ul class="v10-trust"><li>''' + X('pdp.trust1') + '''</li><li>''' + X('pdp.trust2') + '''</li><li>''' + X('pdp.trust3') + '''</li></ul>
 <div class="v10-accs">
-''' + acc('pdp.tabStory', '<div class="v9-desc" style="margin:0;border:0;padding:0">{{ product.description }}</div>', True) + '''
+''' + acc('pdp.tabStory', '{%- assign dimgs = product.metafields.custom.detail_images.value -%}{%- if dimgs -%}<div class="cth-detail-imgs">{%- for u in dimgs -%}<img src="{{ u }}" alt="{{ product.title | escape }}" width="1600" loading="lazy" style="display:block;width:100%;max-width:800px;height:auto;margin:0 auto">{%- endfor -%}</div>{%- endif -%}<div class="v9-desc" style="margin:0;border:0;padding:0">{{ product.description }}</div>', True) + '''
 {% if specs %}''' + acc('pdp.tabSpecs', '<table class="v10-specs">{% for row in specs %}<tr><th scope="row">{{ row[0] }}</th><td>{{ row[1] }}</td></tr>{% endfor %}</table>') + '''{% endif %}
 ''' + acc('pdp.tabShip', '<p>' + X('pdp.shipIntro') + '</p><table class="v10-ship"><thead><tr><th>' + X('pdp.shipRegion') + '</th><th>' + X('pdp.shipMethod') + '</th><th>' + X('pdp.shipTime') + '</th><th>' + X('pdp.shipCost') + '</th></tr></thead><tbody>' + ship_rows + '</tbody></table><p class="v10-help">' + X('pdp.shipIntlList') + '</p><p class="v10-help">' + X('pdp.shipNote') + '</p>') + '''
 ''' + acc('pdp.tabReturns', '<p>' + X('pdp.returns') + '</p>') + '''
