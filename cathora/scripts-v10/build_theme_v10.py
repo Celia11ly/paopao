@@ -553,7 +553,9 @@ def assets():
     if 'window.v10Fav' not in s:
         s = s.replace('function render(r) {', 'function render(r) { if (window.v10Fav) window.v10Fav(r);', 1)
         s = s.replace('    var recs = [];', "    h += (window.v10Reading ? window.v10Reading(r, T) : '');\n    var recs = [];", 1)
-    assert 'window.v10Fav' in s and 'window.v10Reading' in s
+    if 'window.v10Render' not in s:
+        s = s.replace('function render(r) { if (window.v10Fav) window.v10Fav(r);', "function render(r) { if (window.v10Fav) window.v10Fav(r); if (window.v10Render) { var hx = window.v10Render(r, T, P); if (hx) { out.innerHTML = hx; out.hidden = false; selectTab(r.favorable[0]); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; } }", 1)
+    assert 'window.v10Render' in s
     open(p, 'w').write(s + JS + v10_reading.JS)
     p = os.path.join(B.OUT, 'assets/cathora-v9.css')
     open(p, 'a').write(v10_reading.CSS)

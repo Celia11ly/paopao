@@ -180,7 +180,7 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
   function dot(c, size, ch) {
     return '<span class="v9-dot" aria-hidden="true" style="width:' + size + 'px;height:' + size + 'px;background:' + c + ';font-size:' + Math.round(size * .44) + 'px">' + ch + '</span>';
   }
-  function render(r) { if (window.v10Fav) window.v10Fav(r);
+  function render(r) { if (window.v10Fav) window.v10Fav(r); if (window.v10Render) { var hx = window.v10Render(r, T, P); if (hx) { out.innerHTML = hx; out.hidden = false; selectTab(r.favorable[0]); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; } }
     var labels = { year: T.pYear, month: T.pMonth, day: T.pDay, hour: T.pHour };
     var h = '<div><p class="v9-label">' + esc(T.pillarsH) + '</p><div class="v9-pillars">';
     r.pillars.forEach(function (p) {
@@ -232,6 +232,7 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
 
 
 
+
 /* v10 carousel */
 (function(){document.querySelectorAll('[data-v10-carousel]').forEach(function(c){var tr=c.querySelector('[data-v10-track]');if(!tr)return;var step=function(d){var s=tr.querySelector('.v10-slide');var wdt=s?s.getBoundingClientRect().width+20:300;tr.scrollBy({left:d*wdt,behavior:'smooth'});};var p=c.querySelector('[data-v10-prev]'),n=c.querySelector('[data-v10-next]');if(p)p.addEventListener('click',function(){step(-1)});if(n)n.addEventListener('click',function(){step(1)});});})();
 
@@ -239,55 +240,81 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
 (function(){
   var GEN={wood:'fire',fire:'earth',earth:'metal',metal:'water',water:'wood'}, CTL={wood:'earth',earth:'water',water:'fire',fire:'metal',metal:'wood'};
   var COLOR={wood:'#56634A',fire:'#9E3B2C',earth:'#8C6A43',metal:'#6E6C66',water:'#2F3B45'}, CH={wood:'木',fire:'火',earth:'土',metal:'金',water:'水'};
+  var SWATCH={wood:'#5F8A5B',fire:'#C4523A',earth:'#D2AE5A',metal:'#F3F0E8',water:'#2C4A66'};
+  var NUMS={wood:[3,8],fire:[2,7],earth:[5,10],metal:[4,9],water:[1,6]};
   var SEASON={'寅':'spring','卯':'spring','辰':'spring','巳':'summer','午':'summer','未':'summer','申':'autumn','酉':'autumn','戌':'autumn','亥':'winter','子':'winter','丑':'winter'};
-  var SEL={spring:'wood',summer:'fire',autumn:'metal',winter:'water'};
+  var WHEEL=['fire','earth','metal','water','wood'];
   function f(s,o){return String(s).replace(/\{(\w+)\}/g,function(m,k){return o[k]!==undefined?o[k]:m;});}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   window.v10Fav=function(r){
     var dm=r.dayEl,res,off,out=GEN[dm],wea=CTL[dm],s=r.score;
     for(var e in GEN){if(GEN[e]===dm)res=e;if(CTL[e]===dm)off=e;}
-    var strong=r.ratio>=50,yong,xi,yk,xk,ji;
+    var strong=r.ratio>=50,fav,avoid;
     if(strong){
-      if(s[res]>s[dm]){yong=wea;yk='wea';xi=out;xk='xi_gen';}
-      else if(s[off]>=s[out]){yong=off;yk='off';xi=wea;xk='xi_gen';}
-      else{yong=out;yk='out';xi=wea;xk='xi_flow';}
-      ji=[res,dm].sort(function(a,b){return s[b]-s[a];});
+      var first=s[res]>s[dm]?wea:(s[off]>=s[out]?off:out);
+      fav=[first].concat([out,wea,off].filter(function(k){return k!==first;}));
+      avoid=[res,dm].sort(function(a,b){return s[b]-s[a];});
     }else{
       var en=[off,out,wea].sort(function(a,b){return s[b]-s[a];});
-      if(en[0]===wea){yong=dm;yk='same';xi=res;xk='xi_gen';}else{yong=res;yk='res';xi=dm;xk='xi_ally';}
-      ji=en.slice(0,2);
+      fav=en[0]===wea?[dm,res]:[res,dm];
+      avoid=en;
     }
     var role={}; role[res]='res';role[dm]='same';role[out]='out';role[wea]='wea';role[off]='off';
-    r.favorable=[yong,xi];
-    r.v10={strong:strong,yong:yong,yk:yk,xi:xi,xk:xk,ji:ji,role:role,res:res};
+    r.favorable=fav.slice(0,2);
+    r.v10={strong:strong,fav:fav,avoid:avoid,role:role};
   };
-  window.v10Reading=function(r,T){
+  function wheel(r,L,T){
+    var cx=200,cy=185,R0=118,pos={};
+    WHEEL.forEach(function(k,i){var a=(-90+i*72)*Math.PI/180;pos[k]={x:cx+R0*Math.cos(a),y:cy+R0*Math.sin(a),a:a};});
+    var rad=function(k){return 24+Math.min(r.pct[k],80)*0.32;};
+    var g='<svg class="v10r-wheel" viewBox="0 0 400 380" role="img" aria-label="'+esc(L.wheelH)+'"><defs><marker id="v10ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9C8E7A"/></marker></defs>';
+    WHEEL.forEach(function(k,i){var t=WHEEL[(i+2)%5],a=pos[k],b=pos[t];g+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="#D9D2C4" stroke-width="1" stroke-dasharray="3 4"/>';});
+    WHEEL.forEach(function(k,i){var t=WHEEL[(i+1)%5],a=pos[k],b=pos[t],dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy),ux=dx/d,uy=dy/d,ra=rad(k)+6,rb=rad(t)+8;
+      var x1=a.x+ux*ra,y1=a.y+uy*ra,x2=b.x-ux*rb,y2=b.y-uy*rb,mx=(x1+x2)/2,my=(y1+y2)/2,nx=-uy,ny=ux,ox=(mx-cx)>0?1:-1;
+      var cxp=mx+nx*14*((nx*(mx-cx)+ny*(my-cy))>0?1:-1),cyp=my+ny*14*((nx*(mx-cx)+ny*(my-cy))>0?1:-1);
+      g+='<path d="M'+x1.toFixed(1)+' '+y1.toFixed(1)+' Q'+cxp.toFixed(1)+' '+cyp.toFixed(1)+' '+x2.toFixed(1)+' '+y2.toFixed(1)+'" fill="none" stroke="#9C8E7A" stroke-width="1.4" marker-end="url(#v10ar)"/>';
+      var lx=mx+(mx-cx)/R0*22,ly=my+(my-cy)/R0*22;g+='<text x="'+lx.toFixed(1)+'" y="'+(ly+4).toFixed(1)+'" text-anchor="middle" font-size="11" fill="#9C8E7A">'+esc(L.sheng)+'</text>';});
+    WHEEL.forEach(function(k){var p=pos[k],rr=rad(k),c=COLOR[k],dm=k===r.dayEl,ro=L.roles[r.v10.role[k]];
+      g+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+rr+'" fill="'+c+'" fill-opacity="'+(dm?0.95:0.1)+'" stroke="'+c+'" stroke-width="'+(dm?0:1.4)+'"/>';
+      g+='<text x="'+p.x+'" y="'+(p.y-2)+'" text-anchor="middle" font-family="Noto Serif SC,serif" font-size="'+(rr>40?24:20)+'" fill="'+(dm?'#FBFAF7':c)+'">'+CH[k]+'</text>';
+      g+='<text x="'+p.x+'" y="'+(p.y+16)+'" text-anchor="middle" font-size="12" fill="'+(dm?'#FBFAF7':c)+'">'+r.pct[k]+'%</text>';
+      if(dm)g+='<rect x="'+(p.x-22)+'" y="'+(p.y+rr-8)+'" width="44" height="18" rx="9" fill="#1F1E1B"/><text x="'+p.x+'" y="'+(p.y+rr+5)+'" text-anchor="middle" font-size="11" fill="#FBFAF7">'+esc(L.dmTag)+'</text>';
+      var ox=Math.cos(p.a),oy=Math.sin(p.a),lx=p.x+ox*(rr+30),ly=p.y+oy*(rr+22)+(oy<-0.5?-4:0),anc=Math.abs(ox)<0.3?'middle':(ox>0?'start':'end');
+      if(Math.abs(ox)>=0.3)lx=p.x+ox*(rr+10);
+      g+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+anc+'" font-size="12" fill="'+c+'">'+(ro[0]?'<tspan font-weight="600">'+esc(ro[0])+'</tspan> ':'')+esc(ro[1])+'</text>';});
+    return g+'</svg>';
+  }
+  window.v10Render=function(r,T,P){
     var node=document.getElementById('v10-el-read'); if(!node||!r.v10)return '';
-    var L=JSON.parse(node.textContent), v=r.v10, N=function(k){return T.el[k];};
-    var mb=r.pillars[1].branch, season=SEASON[mb], sel=SEL[season], dm=r.dayEl;
-    var sp=sel===dm?'seasonP_same':(GEN[sel]===dm?'seasonP_gen':'seasonP_other');
-    var p1=f(L[sp],{stem:r.dayStem,el:N(dm),season:L.season[season],sel:N(sel)})+' '+f(L[v.strong?'strongP':'weakP'],{res:N(v.res),same:N(dm),pct:r.ratio,level:T.levels[r.level]});
-    var p2a=f(L['use_'+v.yk],{X:N(v.yong),role:L.roles[v.yk]});
-    var p2b=f(L[v.xk],{X:N(v.yong),Y:N(v.xi)});
-    var p3=v.strong?f(L.ji_strong,{A:N(v.ji[0]),B:N(v.ji[1])}):f(L.ji_weak,{A:N(v.ji[0]),B:N(v.ji[1]),roleA:L.roles[v.role[v.ji[0]]],roleB:L.roles[v.role[v.ji[1]]]});
-    var fav=[v.yong,v.xi], notes=[];
-    if(season==='summer')notes.push(f(L.summer,{tail:fav.indexOf('water')>-1?L.summerIn:L.summerOut}));
-    if(season==='winter')notes.push(f(L.winter,{tail:fav.indexOf('fire')>-1?L.winterIn:L.winterOut}));
+    var L=JSON.parse(node.textContent),v=r.v10,N=function(k){return T.el[k];},NM=function(k){return N(k)===CH[k]?'':esc(N(k));};
+    var day=r.pillars[2],labels={year:T.pYear,month:T.pMonth,day:T.pDay,hour:T.pHour};
+    var dmText=T.dm['s'+r.dayIndex];
+    var h='<div class="v10r">';
+    h+='<header class="v10r-hero"><p class="v9-eyebrow red">'+esc(T.pillarsH)+'</p><h3>'+esc(f(L.title,{sb:day.stem+day.branch}))+'</h3><p class="v10r-dm">'+esc(f(L.dm,{stem:r.dayStem,dmText:dmText}))+'</p><div class="v10r-pillars">';
+    r.pillars.forEach(function(p){h+='<div><span class="k">'+esc(labels[p.k])+'</span><b style="color:'+COLOR[p.stemEl]+'">'+p.stem+'</b><b style="color:'+COLOR[p.branchEl]+'">'+p.branch+'</b></div>';});
+    if(!r.hasTime)h+='<div class="na"><span class="k">'+esc(T.pHour)+'</span><b>–</b><b>–</b></div>';
+    h+='</div></header><div class="v10r-grid">';
+    h+='<section class="v10r-card"><p class="v10r-type">【'+esc(L.types[r.level])+'】</p><p class="v10r-p">'+esc(v.strong?L.typeStrong:L.typeWeak)+'</p><p class="v9-label" style="margin:22px 0 0">'+esc(L.wheelH)+'</p>'+wheel(r,L,T);
+    var season=SEASON[r.pillars[1].branch],tips=[];
+    if(season==='summer')tips.push(L.summer); if(season==='winter')tips.push(L.winter);
     var miss=['wood','fire','earth','metal','water'].filter(function(k){return r.pct[k]===0;});
-    if(miss.length){var mf=miss.filter(function(k){return fav.indexOf(k)>-1;});
-      notes.push(f(L.missing,{list:miss.map(N).join(L.sep)})+(mf.length?' '+f(L.missingFav,{list:mf.map(N).join(L.sep)}):''));}
-    function chip(k,lab,solid){var c=COLOR[k];return '<span class="v10-rchip" style="border-color:'+c+';background:'+(solid?c:'transparent')+';color:'+(solid?'#FBFAF7':c)+'"><b>'+CH[k]+'</b>'+(N(k)===CH[k]?'':esc(N(k)))+'<i>'+esc(lab)+'</i></span>';}
-    var h='<div class="v10-read" style="grid-column:1/-1"><h3 class="v9-h3 v10-read-h">'+esc(L.h)+'</h3>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s1H)+'</p><p class="v10-read-p">'+esc(p1)+'</p></div>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s2H)+'</p><div class="v10-rchips">'+chip(v.yong,L.chips.yong,true)+chip(v.xi,L.chips.xi,false)+'</div><p class="v10-read-p">'+esc(p2a)+'</p><p class="v10-read-p">'+esc(p2b)+'</p></div>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s3H)+'</p><div class="v10-rchips">'+chip(v.ji[0],L.chips.ji,false)+chip(v.ji[1],L.chips.ji,false)+'</div><p class="v10-read-p">'+esc(p3)+'</p></div>';
-    if(notes.length)h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s4H)+'</p>'+notes.map(function(n){return '<p class="v10-read-p">'+esc(n)+'</p>';}).join('')+'</div>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s5H)+'</p><div class="v10-guide">';
-    fav.forEach(function(k,i){var g=L.guide[k],c=COLOR[k];
-      h+='<div class="v10-gcard" style="border-top-color:'+c+'"><p class="v10-gh"><span style="background:'+c+'">'+CH[k]+'</span>'+(N(k)===CH[k]?'':esc(N(k))+' · ')+esc(i?L.chips.xi:L.chips.yong)+'</p><dl>';
-      [['color',g.color],['dir',g.dir],['num',g.num],['season',g.season],['mat',L.mat[k]],['life',g.life]].forEach(function(row){h+='<div><dt>'+esc(L.rows[row[0]])+'</dt><dd>'+esc(row[1])+'</dd></div>';});
-      h+='</dl></div>';});
-    h+='</div></div></div>';
+    var mf=miss.filter(function(k){return v.fav.indexOf(k)>-1;}),mo=miss.filter(function(k){return v.fav.indexOf(k)<0;});
+    if(mf.length)tips.push(f(L.missFav,{list:mf.map(N).join(L.sep)})); if(mo.length)tips.push(f(L.missOther,{list:mo.map(N).join(L.sep)}));
+    if(tips.length)h+='<div class="v10r-tip"><b>'+esc(L.tipH)+'</b>'+tips.map(function(t){return '<p>'+esc(t)+'</p>';}).join('')+'</div>';
+    h+='</section><section class="v10r-card">';
+    h+='<div class="v10r-head"><h4>'+esc(L.favH)+'</h4><span class="v10r-tag on">'+esc(L.favTag)+' · '+v.fav.map(function(k){return CH[k];}).join(' ')+'</span></div>';
+    h+='<div class="v10r-lucky"><div><p>'+esc(L.rows.color)+'</p><div class="sw">'+v.fav.map(function(k){return '<span title="'+esc(L.colors[k])+'"><i style="background:'+SWATCH[k]+'"></i>'+esc(L.colors[k])+'</span>';}).join('')+'</div></div>';
+    h+='<div><p>'+esc(L.rows.dir)+'</p><div class="pl">'+v.fav.map(function(k){return '<span>'+esc(L.dirs[k])+'</span>';}).join('')+'</div></div>';
+    h+='<div><p>'+esc(L.rows.num)+'</p><div class="pl">'+v.fav.map(function(k){return NUMS[k].map(function(n){return '<span>'+n+'</span>';}).join('');}).join('')+'</div></div></div>';
+    h+='<ul class="v10r-list">'+v.fav.map(function(k){return '<li><span class="d" style="background:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.fav[v.role[k]])+'</p><small>'+esc(L.rows.mat)+'：'+esc(L.mat[k])+'</small></div></li>';}).join('')+'</ul>';
+    h+='<div class="v10r-head" style="margin-top:30px"><h4>'+esc(L.avoidH)+'</h4><span class="v10r-tag">'+esc(L.avoidTag)+' · '+v.avoid.map(function(k){return CH[k];}).join(' ')+'</span></div>';
+    h+='<ul class="v10r-list muted">'+v.avoid.map(function(k){return '<li><span class="d" style="border-color:'+COLOR[k]+';color:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.avoid[v.role[k]])+'</p></div></li>';}).join('')+'</ul>';
+    h+='</section></div>';
+    var recs=[];v.fav.slice(0,2).forEach(function(k){(P[k]||[]).forEach(function(p){recs.push(p);});});
+    if(recs.length){h+='<section class="v10r-recs"><p class="v9-label">'+esc(T.recH)+'</p><div class="v9-recs">';
+      recs.forEach(function(p){h+='<a class="v9-rec" href="'+esc(p.url)+'"><span class="v9-square"><img src="'+esc(p.img)+'" alt="'+esc(p.title)+'" loading="lazy"></span><span class="t"><b>'+esc(p.title)+'</b><span>'+esc(p.price)+'</span><span style="color:var(--v9-ink);font-size:14px">'+esc(T.see)+'</span></span></a>';});
+      h+='</div></section>';}
+    h+='<p class="v9-note">'+esc(T.note)+'</p></div>';
     return h;
   };
 })();

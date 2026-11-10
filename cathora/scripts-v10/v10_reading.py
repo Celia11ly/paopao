@@ -1,157 +1,106 @@
 # -*- coding: utf-8 -*-
-"""v10.8: detailed Five Elements reading (favourable / unfavourable with reasons, guide)."""
+"""v10.9: Five Elements result, redesigned (hero, type + wheel, favourable / unfavourable with plain reasons)."""
 import json
 
 ELS = ['wood', 'fire', 'earth', 'metal', 'water']
-
 R = {}
 
 R['zh'] = {
-    'h': '你的五行详解', 's1H': '一 · 日主旺衰', 's2H': '二 · 喜用神', 's3H': '三 · 忌神', 's4H': '四 · 调候与五行缺失', 's5H': '开运指南 · 亲近你的喜用',
-    'season': {'spring': '春', 'summer': '夏', 'autumn': '秋', 'winter': '冬'},
-    'seasonP_same': '你的日主为{stem}{el}，生于{season}月，{sel}气当令，正得天时。',
-    'seasonP_gen': '你的日主为{stem}{el}，生于{season}月，{sel}气当令；{sel}生{el}，得时令相生。',
-    'seasonP_other': '你的日主为{stem}{el}，生于{season}月，{sel}气当令，日主不得时令。',
-    'strongP': '命局中生扶你的力量——{res}与{same}——约占 {pct}%，属「{level}」。气盛如满溢之水，宜疏不宜堵：需要能克、能泄、能耗的五行，把过盛的能量引向成就。',
-    'weakP': '命局中生扶你的力量——{res}与{same}——仅约占 {pct}%，属「{level}」。气弱如将尽之灯，宜添不宜耗：需要能生、能扶的五行，为你补足根气。',
-    'roles': {'res': '「印」，生扶你的力量，象征学识、贵人与庇护', 'same': '「比劫」，与你同气，象征意志、自我与同伴',
-              'out': '「食伤」，由你生发，象征才华、表达与创造', 'wea': '「财」，为你所驭，象征财富、资源与成果', 'off': '「官杀」，约束你的力量，象征规则、事业与名位'},
-    'use_wea': '取{X}为用神。{X}是你的{role}。身旺能任财——以财耗身，把过盛的能量化为实实在在的收获。',
-    'use_off': '取{X}为用神。{X}是你的{role}。为过旺的意志立下方圆，锋芒便能化为事业与名望。',
-    'use_out': '取{X}为用神。{X}是你的{role}。泄去过盛之气，化为才华与创造，气顺则运通。',
-    'use_res': '取{X}为用神。{X}是你的{role}。如母养子，为你补足根气，也化解外来的压力。',
-    'use_same': '取{X}为用神。{X}是你的{role}。同气相求，并肩而行，让你担得起眼前的财富与责任。',
-    'xi_gen': '以{Y}为喜神。{Y}生{X}，让用神源源不绝。',
-    'xi_flow': '以{Y}为喜神。{X}生{Y}，才华得以化为收获，气有所归。',
-    'xi_ally': '以{Y}为喜神。它与用神相辅相成，一同为你扶身。',
-    'ji_strong': '忌{A}、{B}。二者都在生扶你的日主——本已满溢的气再被添薪加火，容易刚愎、急躁、心神难安，做事反而事倍功半。',
-    'ji_weak': '忌{A}、{B}。{A}是你的{roleA}；{B}是你的{roleB}。身弱之时再被克、泄、耗，如负重远行，容易力不从心、压力倍增、财来财去。',
-    'summer': '你生于夏月，天地火气正盛，命局偏于燥热。{tail}', 'summerIn': '水正在你的喜用之中，天时与命理相合，更宜多加亲近。', 'summerOut': '不妨适度亲近水，以润其燥，作为调候。',
-    'winter': '你生于冬月，天地寒气凝重，命局偏于寒湿。{tail}', 'winterIn': '火正在你的喜用之中，天时与命理相合，更宜多加亲近。', 'winterOut': '不妨适度亲近火，以暖其寒，作为调候。',
-    'missing': '你的八字中五行缺{list}。缺不一定是坏事：若它正是你的喜用，便是最值得补的那一行；若是忌神，缺反而是福。',
-    'missingFav': '其中，{list}正是你的喜用，宜多亲近。', 'sep': '、',
-    'rows': {'color': '幸运色', 'dir': '吉方位', 'num': '幸运数字', 'season': '旺运时节', 'mat': '宜佩材质', 'life': '生活与事业'},
-    'chips': {'yong': '用神', 'xi': '喜神', 'ji': '忌神'},
-    'guide': {
-        'wood': {'color': '青、绿', 'dir': '东方', 'num': '3、8', 'season': '春季', 'life': '多亲近草木，晨间散步；宜教育、文化、设计、园艺等生长之业。'},
-        'fire': {'color': '红、紫、橙', 'dir': '南方', 'num': '2、7', 'season': '夏季', 'life': '多晒太阳，保持热情与交流；宜传媒、表演、餐饮、能源等光明之业。'},
-        'earth': {'color': '黄、棕、米', 'dir': '中央、东北、西南', 'num': '5、10', 'season': '四季之交', 'life': '规律作息，脚踏实地；宜地产、建筑、农业、管理等承载之业。'},
-        'metal': {'color': '白、金、银', 'dir': '西方', 'num': '4、9', 'season': '秋季', 'life': '断舍离，保持整洁与秩序；宜金融、法律、科技、精密制造等决断之业。'},
-        'water': {'color': '黑、蓝', 'dir': '北方', 'num': '1、6', 'season': '冬季', 'life': '多亲近水，静坐冥想；宜贸易、物流、旅行、咨询等流通之业。'},
-    },
+    'title': '{sb}日出生的你', 'dm': '日主为{stem} · {dmText}',
+    'types': {'strong': '身强型', 'slightlyStrong': '偏强型', 'slightlyWeak': '偏弱型', 'weak': '身弱型'},
+    'typeStrong': '你的能量充沛，像一条丰水期的河——不缺力量，缺的是出口。把多余的能量引向才华、财富与事业，运势自然流转起来。',
+    'typeWeak': '你的能量内敛而细腻，像一盏需要添油的灯——不缺方向，缺的是滋养。多得贵人与同伴扶持，运势便会稳稳升起。',
+    'wheelH': '五行能量分布', 'dmTag': '日主', 'sheng': '生', 'ke': '克',
+    'roles': {'same': ['比劫', '自我'], 'res': ['印星', '贵人'], 'out': ['食伤', '才华'], 'wea': ['财星', '财富'], 'off': ['官杀', '事业']},
+    'favH': '对你有利的五行', 'favTag': '喜用', 'avoidH': '宜少接触的五行', 'avoidTag': '忌',
+    'rows': {'color': '幸运颜色', 'dir': '幸运方位', 'num': '幸运数字', 'mat': '宜佩材质'},
+    'fav': {'out': '释放才华：给充沛的能量一个出口，让想法变成作品与表达。', 'wea': '收获财富：把力量用在实处，化为看得见的回报。',
+            'off': '成就事业：为你定方向、立规矩，让锋芒化为成就与名望。', 'res': '贵人相助：像长辈一样滋养你，带来学识、庇护与好机缘。',
+            'same': '同伴扶持：同气相求，给你底气与行动力。'},
+    'avoid': {'res': '能量已足，再被滋养容易想得多、做得少，固执己见。', 'same': '同类过多，容易争强好胜，人际有摩擦，钱财易散。',
+              'out': '过度消耗心力，容易疲惫、焦虑、力不从心。', 'wea': '财多身弱，机会来了却难以握住，压力随之而来。',
+              'off': '外界的压力与约束偏重，容易紧绷、劳累。'},
+    'tipH': '小贴士',
+    'summer': '你生于夏季，命局偏热——平日多亲近水、保持清凉，有助于平衡。', 'winter': '你生于冬季，命局偏寒——平日多晒太阳、亲近温暖，有助于平衡。',
+    'missFav': '你的八字中缺{list}，而它正好对你有利，值得多多亲近。', 'missOther': '你的八字中缺{list}，它并非你的喜用，缺了反而无妨。',
+    'sep': '、',
+    'dirs': {'wood': '东', 'fire': '南', 'earth': '西南、东北', 'metal': '西', 'water': '北'},
+    'colors': {'wood': '青绿', 'fire': '红紫', 'earth': '黄棕', 'metal': '白金', 'water': '黑蓝'},
 }
 
 R['en'] = {
-    'h': 'Your elements, in depth', 's1H': 'I · Day master strength', 's2H': 'II · Favourable elements', 's3H': 'III · Elements to avoid', 's4H': 'IV · Season and missing elements', 's5H': 'Bringing in good fortune',
-    'season': {'spring': 'spring', 'summer': 'summer', 'autumn': 'autumn', 'winter': 'winter'},
-    'seasonP_same': 'Your day master is {stem} {el}, born in {season}, when {sel} is in command — you were born in your own season.',
-    'seasonP_gen': 'Your day master is {stem} {el}, born in {season}, when {sel} is in command; {sel} feeds {el}, so the season is on your side.',
-    'seasonP_other': 'Your day master is {stem} {el}, born in {season}, when {sel} is in command — not your own season.',
-    'strongP': 'The forces that support you — {res} and {same} — make up about {pct}% of your chart: {level}. Strong qi is like water at the brim: it should be channelled, not dammed. You need the elements that restrain, express and spend, to turn surplus energy into achievement.',
-    'weakP': 'The forces that support you — {res} and {same} — make up only about {pct}% of your chart: {level}. Gentle qi is like a lamp low on oil: add to it, don\'t drain it. You need the elements that nourish and support, to strengthen your roots.',
-    'roles': {'res': 'Resource — the force that nourishes you: learning, mentors and protection', 'same': 'Companion — the same breath as you: will, self and allies',
-              'out': 'Expression — what flows out of you: talent, voice and creativity', 'wea': 'Wealth — what you master: money, resources and results', 'off': 'Authority — the force that shapes you: rules, career and standing'},
-    'use_wea': 'Your primary favourable element is {X}. {X} is your {role}. A strong chart can carry wealth — spending energy on it turns surplus into real reward.',
-    'use_off': 'Your primary favourable element is {X}. {X} is your {role}. It gives an overly strong will a shape to work within, so its edge becomes career and reputation.',
-    'use_out': 'Your primary favourable element is {X}. {X} is your {role}. It lets surplus qi flow out as talent and creation; when qi flows, fortune follows.',
-    'use_res': 'Your primary favourable element is {X}. {X} is your {role}. Like a mother nourishing a child, it replenishes your roots and softens pressure from outside.',
-    'use_same': 'Your primary favourable element is {X}. {X} is your {role}. Kindred breath walking beside you, it gives you the strength to carry the wealth and responsibility in front of you.',
-    'xi_gen': '{Y} is your supporting element: {Y} feeds {X}, keeping it strong.',
-    'xi_flow': '{Y} is your supporting element: {X} feeds {Y}, so talent finds its way into reward.',
-    'xi_ally': '{Y} is your supporting element: it works alongside {X} to hold you up.',
-    'ji_strong': 'Avoid too much {A} and {B}. Both add to a day master that is already full — more fuel on the fire. It can make you stubborn, restless and scattered, so effort yields less.',
-    'ji_weak': 'Avoid too much {A} and {B}. {A} is your {roleA}; {B} is your {roleB}. When your qi is already gentle, being restrained, drained and spent is like carrying a heavy load a long way: stretched thin, under pressure, money in and out.',
-    'summer': 'You were born in summer, when the fire of heaven and earth is at its height; your chart runs hot and dry. {tail}', 'summerIn': 'Water is already among your favourable elements — season and chart agree, so draw close to it.', 'summerOut': 'It is worth keeping some water near, to cool and moisten — a seasonal adjustment.',
-    'winter': 'You were born in winter, when the cold of heaven and earth runs deep; your chart runs cold and damp. {tail}', 'winterIn': 'Fire is already among your favourable elements — season and chart agree, so draw close to it.', 'winterOut': 'It is worth keeping some fire near, to warm — a seasonal adjustment.',
-    'missing': 'Your chart has no {list}. Missing is not necessarily bad: if it is favourable, it is the element most worth adding; if it is one to avoid, its absence is a blessing.',
-    'missingFav': 'Of these, {list} is favourable for you — draw close to it.', 'sep': ', ',
-    'rows': {'color': 'Lucky colours', 'dir': 'Best direction', 'num': 'Lucky numbers', 'season': 'Strongest season', 'mat': 'Materials to wear', 'life': 'Life & work'},
-    'chips': {'yong': 'Primary', 'xi': 'Supporting', 'ji': 'Avoid'},
-    'guide': {
-        'wood': {'color': 'Green, teal', 'dir': 'East', 'num': '3, 8', 'season': 'Spring', 'life': 'Spend time among plants and walk in the morning; suited to education, culture, design, gardening — work that grows.'},
-        'fire': {'color': 'Red, purple, orange', 'dir': 'South', 'num': '2, 7', 'season': 'Summer', 'life': 'Seek sunlight, stay warm and connected; suited to media, performance, hospitality, energy — work that shines.'},
-        'earth': {'color': 'Yellow, brown, cream', 'dir': 'Centre, north-east, south-west', 'num': '5, 10', 'season': 'Turn of the seasons', 'life': 'Keep a steady routine and stay grounded; suited to property, architecture, agriculture, management — work that holds.'},
-        'metal': {'color': 'White, gold, silver', 'dir': 'West', 'num': '4, 9', 'season': 'Autumn', 'life': 'Declutter, keep order and clarity; suited to finance, law, technology, precision craft — work that decides.'},
-        'water': {'color': 'Black, blue', 'dir': 'North', 'num': '1, 6', 'season': 'Winter', 'life': 'Be near water and sit in stillness; suited to trade, logistics, travel, consulting — work that flows.'},
-    },
+    'title': 'Born on a {sb} day', 'dm': 'Day master {stem} · {dmText}',
+    'types': {'strong': 'Strong type', 'slightlyStrong': 'Leaning strong', 'slightlyWeak': 'Leaning gentle', 'weak': 'Gentle type'},
+    'typeStrong': 'Your energy runs full, like a river in flood — you don\'t lack strength, you need an outlet. Channel the surplus into talent, wealth and work, and fortune begins to move.',
+    'typeWeak': 'Your energy is inward and fine, like a lamp that wants more oil — you don\'t lack direction, you need nourishment. With support from mentors and allies, your fortune rises steadily.',
+    'wheelH': 'Your elemental balance', 'dmTag': 'You', 'sheng': 'feeds', 'ke': 'checks',
+    'roles': {'same': ['', 'Self'], 'res': ['', 'Support'], 'out': ['', 'Talent'], 'wea': ['', 'Wealth'], 'off': ['', 'Career']},
+    'favH': 'Elements that favour you', 'favTag': 'Favourable', 'avoidH': 'Elements to keep in check', 'avoidTag': 'Unfavourable',
+    'rows': {'color': 'Lucky colours', 'dir': 'Lucky directions', 'num': 'Lucky numbers', 'mat': 'Materials to wear'},
+    'fav': {'out': 'Release your talent: give abundant energy an outlet, so ideas become work and expression.', 'wea': 'Reap the reward: put your strength to practical use, and turn it into results you can see.',
+            'off': 'Build your career: direction and structure turn your edge into achievement and standing.', 'res': 'Find support: like an elder, it nourishes you with learning, protection and good fortune.',
+            'same': 'Walk with allies: kindred energy gives you confidence and the will to act.'},
+    'avoid': {'res': 'Your energy is already full; more nourishment can mean overthinking, underdoing and digging in.', 'same': 'Too much of your own kind breeds rivalry and friction, and money slips away.',
+              'out': 'It drains your reserves, leaving you tired, anxious and stretched thin.', 'wea': 'Opportunity outweighs your strength — it arrives but is hard to hold, and pressure follows.',
+              'off': 'Outside pressure and constraint weigh heavily, leaving you tense and worn.'},
+    'tipH': 'A note',
+    'summer': 'Born in summer, your chart runs warm — time near water and keeping cool help you balance.', 'winter': 'Born in winter, your chart runs cold — sunlight and warmth help you balance.',
+    'missFav': 'Your chart has no {list} — and it happens to favour you, so it is well worth drawing close to.', 'missOther': 'Your chart has no {list} — it isn\'t one of your favourable elements, so its absence does no harm.',
+    'sep': ', ',
+    'dirs': {'wood': 'East', 'fire': 'South', 'earth': 'South-west, North-east', 'metal': 'West', 'water': 'North'},
+    'colors': {'wood': 'Green', 'fire': 'Red', 'earth': 'Yellow', 'metal': 'White', 'water': 'Blue'},
 }
 
 R['ja'] = {
-    'h': '五行の詳しい解読', 's1H': '一 · 日主の強弱', 's2H': '二 · 喜用神', 's3H': '三 · 忌神', 's4H': '四 · 調候と欠ける五行', 's5H': '開運ガイド · 喜用に親しむ',
-    'season': {'spring': '春', 'summer': '夏', 'autumn': '秋', 'winter': '冬'},
-    'seasonP_same': 'あなたの日主は{stem}（{el}）。{season}に生まれ、{sel}の気が旺じる時——まさに天の時を得ています。',
-    'seasonP_gen': 'あなたの日主は{stem}（{el}）。{season}に生まれ、{sel}の気が旺じる時。{sel}は{el}を生み、季節があなたを後押ししています。',
-    'seasonP_other': 'あなたの日主は{stem}（{el}）。{season}に生まれ、{sel}の気が旺じる時——日主は時を得ていません。',
-    'strongP': '命式のなかであなたを生み支える力——{res}と{same}——はおよそ{pct}%、「{level}」です。盛んな気は満ちあふれる水のよう。せき止めず、導くこと。剋し、洩らし、費やす五行で、余る力を成果へ向けましょう。',
-    'weakP': '命式のなかであなたを生み支える力——{res}と{same}——はおよそ{pct}%にとどまり、「{level}」です。弱い気は油の尽きかけた灯のよう。費やさず、足すこと。生み、支える五行で、根の気を補いましょう。',
-    'roles': {'res': '「印」——あなたを生み支える力。学び、貴人、庇護の象徴', 'same': '「比劫」——あなたと同じ気。意志、自己、仲間の象徴',
-              'out': '「食傷」——あなたから生まれ出るもの。才能、表現、創造の象徴', 'wea': '「財」——あなたが御するもの。財、資源、成果の象徴', 'off': '「官殺」——あなたを律する力。規律、仕事、地位の象徴'},
-    'use_wea': '{X}を用神とします。{X}はあなたの{role}。身旺は財を担える——財に力を使うことで、余る気を確かな実りに変えます。',
-    'use_off': '{X}を用神とします。{X}はあなたの{role}。強すぎる意志に枠を与え、その鋭さを仕事と名声へ変えます。',
-    'use_out': '{X}を用神とします。{X}はあなたの{role}。余る気を才能と創造として流し出す。気がめぐれば、運も通じます。',
-    'use_res': '{X}を用神とします。{X}はあなたの{role}。母が子を養うように根の気を補い、外からの圧力もやわらげます。',
-    'use_same': '{X}を用神とします。{X}はあなたの{role}。同じ気が肩を並べ、目の前の財と責任を担う力をくれます。',
-    'xi_gen': '{Y}を喜神とします。{Y}は{X}を生み、用神を絶えず支えます。',
-    'xi_flow': '{Y}を喜神とします。{X}が{Y}を生み、才能が実りへと流れ込みます。',
-    'xi_ally': '{Y}を喜神とします。用神と助け合い、ともにあなたを支えます。',
-    'ji_strong': '{A}と{B}は忌神です。どちらもすでに満ちた日主をさらに強め、火に薪をくべるようなもの。頑なになり、焦り、心が落ち着かず、努力が実りにくくなります。',
-    'ji_weak': '{A}と{B}は忌神です。{A}はあなたの{roleA}、{B}はあなたの{roleB}。身弱のときに剋され、洩らされ、費やされるのは、重荷を背負って遠くへ歩くようなもの。力が足りず、重圧が増し、お金も出入りしがちです。',
-    'summer': 'あなたは夏に生まれ、天地の火の気が最も盛んな時。命式は燥熱に傾いています。{tail}', 'summerIn': '水はすでにあなたの喜用。天の時と命式が一致しているので、なおさら近づきましょう。', 'summerOut': '水に適度に親しみ、燥を潤す調候とするとよいでしょう。',
-    'winter': 'あなたは冬に生まれ、天地の寒気が深い時。命式は寒湿に傾いています。{tail}', 'winterIn': '火はすでにあなたの喜用。天の時と命式が一致しているので、なおさら近づきましょう。', 'winterOut': '火に適度に親しみ、寒を温める調候とするとよいでしょう。',
-    'missing': 'あなたの八字には{list}が欠けています。欠けることは必ずしも悪くありません。それが喜用なら最も補う価値のある五行、忌神なら、欠けていることがむしろ福です。',
-    'missingFav': 'このうち{list}はあなたの喜用。積極的に近づきましょう。', 'sep': '・',
-    'rows': {'color': 'ラッキーカラー', 'dir': '吉方位', 'num': 'ラッキーナンバー', 'season': '運気の旺じる季節', 'mat': '身につけたい素材', 'life': '暮らしと仕事'},
-    'chips': {'yong': '用神', 'xi': '喜神', 'ji': '忌神'},
-    'guide': {
-        'wood': {'color': '青・緑', 'dir': '東', 'num': '3・8', 'season': '春', 'life': '草木に親しみ、朝に散歩を。教育・文化・デザイン・園芸など、育てる仕事に。'},
-        'fire': {'color': '赤・紫・橙', 'dir': '南', 'num': '2・7', 'season': '夏', 'life': '日の光を浴び、情熱と交流を大切に。メディア・表現・飲食・エネルギーなど、照らす仕事に。'},
-        'earth': {'color': '黄・茶・生成り', 'dir': '中央・北東・南西', 'num': '5・10', 'season': '季節の変わり目', 'life': '規則正しく、地に足をつけて。不動産・建築・農業・マネジメントなど、支える仕事に。'},
-        'metal': {'color': '白・金・銀', 'dir': '西', 'num': '4・9', 'season': '秋', 'life': '手放し、整え、秩序を保って。金融・法律・テクノロジー・精密なものづくりなど、決断する仕事に。'},
-        'water': {'color': '黒・青', 'dir': '北', 'num': '1・6', 'season': '冬', 'life': '水辺に親しみ、静かに座る時間を。貿易・物流・旅・コンサルティングなど、流れる仕事に。'},
-    },
+    'title': '{sb}の日に生まれたあなた', 'dm': '日主は{stem} · {dmText}',
+    'types': {'strong': '身強タイプ', 'slightlyStrong': 'やや強タイプ', 'slightlyWeak': 'やや弱タイプ', 'weak': '身弱タイプ'},
+    'typeStrong': 'あなたのエネルギーは満ちあふれ、水量豊かな川のよう。力は足りている、必要なのは出口です。余る力を才能・財・仕事へ向ければ、運は自然にめぐり出します。',
+    'typeWeak': 'あなたのエネルギーは内に秘めた繊細なもの、油を足したい灯のよう。方向は見えている、必要なのは滋養です。貴人や仲間の支えを得れば、運は着実に上向きます。',
+    'wheelH': '五行のバランス', 'dmTag': '日主', 'sheng': '生', 'ke': '剋',
+    'roles': {'same': ['比劫', '自分'], 'res': ['印星', '貴人'], 'out': ['食傷', '才能'], 'wea': ['財星', '財'], 'off': ['官殺', '仕事']},
+    'favH': 'あなたを助ける五行', 'favTag': '喜用', 'avoidH': '控えたい五行', 'avoidTag': '忌',
+    'rows': {'color': 'ラッキーカラー', 'dir': 'ラッキー方位', 'num': 'ラッキーナンバー', 'mat': '身につけたい素材'},
+    'fav': {'out': '才能を解き放つ：満ちた力に出口を与え、思いを作品や表現に変えます。', 'wea': '実りを得る：力を実際に使い、目に見える成果に変えます。',
+            'off': '仕事を成す：方向と規律を与え、鋭さを成果と名声に変えます。', 'res': '貴人の助け：目上の人のようにあなたを養い、学び・庇護・良縁をもたらします。',
+            'same': '仲間の支え：同じ気が寄り添い、自信と行動力をくれます。'},
+    'avoid': {'res': 'すでに力は十分。さらに養われると、考えすぎて動けず、頑なになりがちです。', 'same': '同類が多すぎると、張り合いや摩擦が生まれ、お金も散りやすくなります。',
+              'out': '心身を消耗しやすく、疲れや不安、力不足を招きます。', 'wea': '財が多く身が弱い。機会が来てもつかみきれず、重圧がついてきます。',
+              'off': '外からの圧力や制約が重く、緊張や疲れがたまりやすくなります。'},
+    'tipH': 'ひとこと',
+    'summer': '夏生まれで命式は熱に傾きがち。水に親しみ、涼やかに過ごすとバランスが整います。', 'winter': '冬生まれで命式は寒に傾きがち。日の光やぬくもりに親しむとバランスが整います。',
+    'missFav': 'あなたの八字には{list}がありません。ちょうど喜用なので、積極的に近づきましょう。', 'missOther': 'あなたの八字には{list}がありません。喜用ではないので、欠けていても差し支えありません。',
+    'sep': '・',
+    'dirs': {'wood': '東', 'fire': '南', 'earth': '南西・北東', 'metal': '西', 'water': '北'},
+    'colors': {'wood': '緑', 'fire': '赤', 'earth': '黄', 'metal': '白', 'water': '紺'},
 }
 
 R['ko'] = {
-    'h': '오행 상세 풀이', 's1H': '一 · 일주의 강약', 's2H': '二 · 희용신', 's3H': '三 · 기신', 's4H': '四 · 조후와 부족한 오행', 's5H': '개운 가이드 · 희용신을 가까이',
-    'season': {'spring': '봄', 'summer': '여름', 'autumn': '가을', 'winter': '겨울'},
-    'seasonP_same': '당신의 일주는 {stem} {el}입니다. {season}에 태어나 {sel}의 기운이 왕성한 때——바로 천시를 얻었습니다.',
-    'seasonP_gen': '당신의 일주는 {stem} {el}입니다. {season}에 태어나 {sel}의 기운이 왕성한 때, {sel}의 기운이 {el}의 기운을 낳으니 계절이 당신을 돕습니다.',
-    'seasonP_other': '당신의 일주는 {stem} {el}입니다. {season}에 태어나 {sel}의 기운이 왕성한 때——일주는 때를 얻지 못했습니다.',
-    'strongP': '명식에서 당신을 생하고 돕는 힘({res}·{same})은 약 {pct}%로 「{level}」입니다. 성한 기운은 넘치는 물과 같아 막기보다 이끌어야 합니다. 극하고, 설하고, 소모하는 오행으로 넘치는 힘을 성취로 이끄세요.',
-    'weakP': '명식에서 당신을 생하고 돕는 힘({res}·{same})은 약 {pct}%에 그쳐 「{level}」입니다. 약한 기운은 기름이 다해 가는 등불과 같아 소모하기보다 더해야 합니다. 생하고 돕는 오행으로 뿌리의 기운을 채우세요.',
-    'roles': {'res': '「인성」——당신을 생하고 돕는 힘, 배움·귀인·보호의 상징', 'same': '「비겁」——당신과 같은 기운, 의지·자아·동료의 상징',
-              'out': '「식상」——당신에게서 나오는 것, 재능·표현·창조의 상징', 'wea': '「재성」——당신이 다스리는 것, 재물·자원·성과의 상징', 'off': '「관살」——당신을 다스리는 힘, 규율·일·지위의 상징'},
-    'use_wea': '용신: {X}. 이는 당신의 {role}입니다. 신강하면 재물을 감당할 수 있으니, 재물에 힘을 써 넘치는 기운을 확실한 결실로 바꿉니다.',
-    'use_off': '용신: {X}. 이는 당신의 {role}입니다. 지나치게 강한 의지에 틀을 주어, 그 날카로움을 일과 명성으로 바꿉니다.',
-    'use_out': '용신: {X}. 이는 당신의 {role}입니다. 넘치는 기운을 재능과 창조로 흘려보내니, 기운이 통하면 운도 통합니다.',
-    'use_res': '용신: {X}. 이는 당신의 {role}입니다. 어머니가 아이를 기르듯 뿌리의 기운을 채우고, 바깥의 압박도 누그러뜨립니다.',
-    'use_same': '용신: {X}. 이는 당신의 {role}입니다. 같은 기운이 어깨를 나란히 하여, 눈앞의 재물과 책임을 감당할 힘을 줍니다.',
-    'xi_gen': '희신: {Y}. {Y}의 기운이 {X}의 기운을 낳아 용신을 끊임없이 받쳐 줍니다.',
-    'xi_flow': '희신: {Y}. {X}의 기운이 {Y}의 기운을 낳으니, 재능이 결실로 흘러듭니다.',
-    'xi_ally': '희신: {Y}. 용신과 서로 도우며 함께 당신을 받쳐 줍니다.',
-    'ji_strong': '기신: {A}·{B}. 둘 다 이미 가득 찬 일주를 더 강하게 하니 불에 장작을 더하는 격입니다. 고집스러워지고 조급해지며 마음이 쉬지 못해, 애쓴 만큼 이루기 어렵습니다.',
-    'ji_weak': '기신: {A}·{B}. 앞의 것은 당신의 {roleA}, 뒤의 것은 당신의 {roleB}입니다. 신약할 때 극하고 설하고 소모당하면 무거운 짐을 지고 먼 길을 가는 것과 같아, 힘에 부치고 압박이 커지며 재물이 들고 나기 쉽습니다.',
-    'summer': '당신은 여름에 태어났고, 천지의 화기가 가장 왕성한 때입니다. 명식이 조열(燥熱)에 기울어 있습니다. {tail}', 'summerIn': '수는 이미 당신의 희용신이니 천시와 명식이 맞아떨어집니다. 더욱 가까이하세요.', 'summerOut': '물을 적당히 가까이하여 메마름을 적시는 조후로 삼으면 좋습니다.',
-    'winter': '당신은 겨울에 태어났고, 천지의 한기가 깊은 때입니다. 명식이 한습(寒濕)에 기울어 있습니다. {tail}', 'winterIn': '화는 이미 당신의 희용신이니 천시와 명식이 맞아떨어집니다. 더욱 가까이하세요.', 'winterOut': '불을 적당히 가까이하여 차가움을 데우는 조후로 삼으면 좋습니다.',
-    'missing': '당신의 팔자에 없는 오행: {list}. 없다고 꼭 나쁜 것은 아닙니다. 그것이 희용신이라면 가장 채울 가치가 있는 오행이고, 기신이라면 없는 것이 오히려 복입니다.',
-    'missingFav': '그중 희용신에 해당하는 것: {list}. 적극적으로 가까이하세요.', 'sep': '·',
-    'rows': {'color': '행운의 색', 'dir': '길한 방위', 'num': '행운의 숫자', 'season': '운이 왕성한 계절', 'mat': '지니면 좋은 소재', 'life': '생활과 일'},
-    'chips': {'yong': '용신', 'xi': '희신', 'ji': '기신'},
-    'guide': {
-        'wood': {'color': '청록·초록', 'dir': '동', 'num': '3·8', 'season': '봄', 'life': '초목을 가까이하고 아침에 산책하세요. 교육·문화·디자인·원예 등 기르는 일에.'},
-        'fire': {'color': '빨강·보라·주황', 'dir': '남', 'num': '2·7', 'season': '여름', 'life': '햇볕을 쬐고 열정과 교류를 소중히. 미디어·공연·외식·에너지 등 비추는 일에.'},
-        'earth': {'color': '노랑·갈색·미색', 'dir': '중앙·북동·남서', 'num': '5·10', 'season': '환절기', 'life': '규칙적으로 생활하고 땅에 발을 디디세요. 부동산·건축·농업·경영 등 받치는 일에.'},
-        'metal': {'color': '하양·금색·은색', 'dir': '서', 'num': '4·9', 'season': '가을', 'life': '비우고 정돈하며 질서를 지키세요. 금융·법률·기술·정밀 제조 등 결단하는 일에.'},
-        'water': {'color': '검정·파랑', 'dir': '북', 'num': '1·6', 'season': '겨울', 'life': '물가를 가까이하고 고요히 앉는 시간을. 무역·물류·여행·컨설팅 등 흐르는 일에.'},
-    },
+    'title': '{sb}일에 태어난 당신', 'dm': '일주 {stem} · {dmText}',
+    'types': {'strong': '신강형', 'slightlyStrong': '약간 신강형', 'slightlyWeak': '약간 신약형', 'weak': '신약형'},
+    'typeStrong': '당신의 에너지는 넘쳐흐르는 강물처럼 충만합니다. 힘이 부족한 것이 아니라 출구가 필요합니다. 넘치는 힘을 재능·재물·일로 이끌면 운이 자연스럽게 흐르기 시작합니다.',
+    'typeWeak': '당신의 에너지는 안으로 깊고 섬세합니다. 기름을 더해야 할 등불처럼, 방향은 있으나 자양이 필요합니다. 귀인과 동료의 도움을 받으면 운이 차근차근 오릅니다.',
+    'wheelH': '오행 에너지 분포', 'dmTag': '일주', 'sheng': '생', 'ke': '극',
+    'roles': {'same': ['비겁', '자아'], 'res': ['인성', '귀인'], 'out': ['식상', '재능'], 'wea': ['재성', '재물'], 'off': ['관살', '일']},
+    'favH': '당신을 돕는 오행', 'favTag': '희용', 'avoidH': '절제할 오행', 'avoidTag': '기신',
+    'rows': {'color': '행운의 색', 'dir': '행운의 방위', 'num': '행운의 숫자', 'mat': '지니면 좋은 소재'},
+    'fav': {'out': '재능을 펼치다: 넘치는 힘에 출구를 주어 생각을 작품과 표현으로 바꿉니다.', 'wea': '결실을 거두다: 힘을 실제에 써서 눈에 보이는 성과로 바꿉니다.',
+            'off': '일을 이루다: 방향과 규율을 주어 날카로움을 성취와 명성으로 바꿉니다.', 'res': '귀인의 도움: 어른처럼 당신을 길러 배움·보호·좋은 인연을 가져옵니다.',
+            'same': '동료의 지지: 같은 기운이 곁에서 자신감과 행동력을 줍니다.'},
+    'avoid': {'res': '이미 힘이 충분한데 더 채워지면 생각만 많고 실행이 줄며 고집스러워지기 쉽습니다.', 'same': '같은 기운이 지나치면 경쟁과 마찰이 생기고 재물이 흩어지기 쉽습니다.',
+              'out': '심력을 과하게 소모해 피로·불안·무력감이 오기 쉽습니다.', 'wea': '재물은 많은데 몸이 약해 기회가 와도 붙잡기 어렵고 압박이 따릅니다.',
+              'off': '바깥의 압박과 제약이 무거워 긴장하고 지치기 쉽습니다.'},
+    'tipH': '한마디',
+    'summer': '여름에 태어나 명식이 뜨거운 편입니다. 물을 가까이하고 시원하게 지내면 균형에 도움이 됩니다.', 'winter': '겨울에 태어나 명식이 차가운 편입니다. 햇볕과 따뜻함을 가까이하면 균형에 도움이 됩니다.',
+    'missFav': '당신의 팔자에 없는 오행: {list}. 마침 희용이니 적극적으로 가까이하세요.', 'missOther': '당신의 팔자에 없는 오행: {list}. 희용이 아니니 없어도 괜찮습니다.',
+    'sep': '·',
+    'dirs': {'wood': '동', 'fire': '남', 'earth': '남서·북동', 'metal': '서', 'water': '북'},
+    'colors': {'wood': '초록', 'fire': '빨강', 'earth': '노랑', 'metal': '하양', 'water': '남색'},
 }
 
 
 def liquid_json():
     mats = ',"mat":{' + ','.join('"%s":{{ \'v9.el.%s.materials\' | t | json }}' % (k, k) for k in ELS) + '}'
-    parts = []
-    for loc, key in [('en', 'en'), ('ja', 'ja'), ('ko', 'ko')]:
-        parts.append("{%% when '%s' %%}%s" % (loc, json.dumps(R[key], ensure_ascii=False)[:-1] + mats + '}'))
+    parts = ["{%% when '%s' %%}%s" % (loc, json.dumps(R[loc], ensure_ascii=False)[:-1] + mats + '}') for loc in ['en', 'ja', 'ko']]
     return ('<script type="application/json" id="v10-el-read">{% case request.locale.iso_code %}' + ''.join(parts)
             + '{% else %}' + json.dumps(R['zh'], ensure_ascii=False)[:-1] + mats + '}{% endcase %}</script>')
 
@@ -161,73 +110,119 @@ JS = r'''
 (function(){
   var GEN={wood:'fire',fire:'earth',earth:'metal',metal:'water',water:'wood'}, CTL={wood:'earth',earth:'water',water:'fire',fire:'metal',metal:'wood'};
   var COLOR={wood:'#56634A',fire:'#9E3B2C',earth:'#8C6A43',metal:'#6E6C66',water:'#2F3B45'}, CH={wood:'木',fire:'火',earth:'土',metal:'金',water:'水'};
+  var SWATCH={wood:'#5F8A5B',fire:'#C4523A',earth:'#D2AE5A',metal:'#F3F0E8',water:'#2C4A66'};
+  var NUMS={wood:[3,8],fire:[2,7],earth:[5,10],metal:[4,9],water:[1,6]};
   var SEASON={'寅':'spring','卯':'spring','辰':'spring','巳':'summer','午':'summer','未':'summer','申':'autumn','酉':'autumn','戌':'autumn','亥':'winter','子':'winter','丑':'winter'};
-  var SEL={spring:'wood',summer:'fire',autumn:'metal',winter:'water'};
+  var WHEEL=['fire','earth','metal','water','wood'];
   function f(s,o){return String(s).replace(/\{(\w+)\}/g,function(m,k){return o[k]!==undefined?o[k]:m;});}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   window.v10Fav=function(r){
     var dm=r.dayEl,res,off,out=GEN[dm],wea=CTL[dm],s=r.score;
     for(var e in GEN){if(GEN[e]===dm)res=e;if(CTL[e]===dm)off=e;}
-    var strong=r.ratio>=50,yong,xi,yk,xk,ji;
+    var strong=r.ratio>=50,fav,avoid;
     if(strong){
-      if(s[res]>s[dm]){yong=wea;yk='wea';xi=out;xk='xi_gen';}
-      else if(s[off]>=s[out]){yong=off;yk='off';xi=wea;xk='xi_gen';}
-      else{yong=out;yk='out';xi=wea;xk='xi_flow';}
-      ji=[res,dm].sort(function(a,b){return s[b]-s[a];});
+      var first=s[res]>s[dm]?wea:(s[off]>=s[out]?off:out);
+      fav=[first].concat([out,wea,off].filter(function(k){return k!==first;}));
+      avoid=[res,dm].sort(function(a,b){return s[b]-s[a];});
     }else{
       var en=[off,out,wea].sort(function(a,b){return s[b]-s[a];});
-      if(en[0]===wea){yong=dm;yk='same';xi=res;xk='xi_gen';}else{yong=res;yk='res';xi=dm;xk='xi_ally';}
-      ji=en.slice(0,2);
+      fav=en[0]===wea?[dm,res]:[res,dm];
+      avoid=en;
     }
     var role={}; role[res]='res';role[dm]='same';role[out]='out';role[wea]='wea';role[off]='off';
-    r.favorable=[yong,xi];
-    r.v10={strong:strong,yong:yong,yk:yk,xi:xi,xk:xk,ji:ji,role:role,res:res};
+    r.favorable=fav.slice(0,2);
+    r.v10={strong:strong,fav:fav,avoid:avoid,role:role};
   };
-  window.v10Reading=function(r,T){
+  function wheel(r,L,T){
+    var cx=200,cy=185,R0=118,pos={};
+    WHEEL.forEach(function(k,i){var a=(-90+i*72)*Math.PI/180;pos[k]={x:cx+R0*Math.cos(a),y:cy+R0*Math.sin(a),a:a};});
+    var rad=function(k){return 24+Math.min(r.pct[k],80)*0.32;};
+    var g='<svg class="v10r-wheel" viewBox="0 0 400 380" role="img" aria-label="'+esc(L.wheelH)+'"><defs><marker id="v10ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9C8E7A"/></marker></defs>';
+    WHEEL.forEach(function(k,i){var t=WHEEL[(i+2)%5],a=pos[k],b=pos[t];g+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="#D9D2C4" stroke-width="1" stroke-dasharray="3 4"/>';});
+    WHEEL.forEach(function(k,i){var t=WHEEL[(i+1)%5],a=pos[k],b=pos[t],dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy),ux=dx/d,uy=dy/d,ra=rad(k)+6,rb=rad(t)+8;
+      var x1=a.x+ux*ra,y1=a.y+uy*ra,x2=b.x-ux*rb,y2=b.y-uy*rb,mx=(x1+x2)/2,my=(y1+y2)/2,nx=-uy,ny=ux,ox=(mx-cx)>0?1:-1;
+      var cxp=mx+nx*14*((nx*(mx-cx)+ny*(my-cy))>0?1:-1),cyp=my+ny*14*((nx*(mx-cx)+ny*(my-cy))>0?1:-1);
+      g+='<path d="M'+x1.toFixed(1)+' '+y1.toFixed(1)+' Q'+cxp.toFixed(1)+' '+cyp.toFixed(1)+' '+x2.toFixed(1)+' '+y2.toFixed(1)+'" fill="none" stroke="#9C8E7A" stroke-width="1.4" marker-end="url(#v10ar)"/>';
+      var lx=mx+(mx-cx)/R0*22,ly=my+(my-cy)/R0*22;g+='<text x="'+lx.toFixed(1)+'" y="'+(ly+4).toFixed(1)+'" text-anchor="middle" font-size="11" fill="#9C8E7A">'+esc(L.sheng)+'</text>';});
+    WHEEL.forEach(function(k){var p=pos[k],rr=rad(k),c=COLOR[k],dm=k===r.dayEl,ro=L.roles[r.v10.role[k]];
+      g+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+rr+'" fill="'+c+'" fill-opacity="'+(dm?0.95:0.1)+'" stroke="'+c+'" stroke-width="'+(dm?0:1.4)+'"/>';
+      g+='<text x="'+p.x+'" y="'+(p.y-2)+'" text-anchor="middle" font-family="Noto Serif SC,serif" font-size="'+(rr>40?24:20)+'" fill="'+(dm?'#FBFAF7':c)+'">'+CH[k]+'</text>';
+      g+='<text x="'+p.x+'" y="'+(p.y+16)+'" text-anchor="middle" font-size="12" fill="'+(dm?'#FBFAF7':c)+'">'+r.pct[k]+'%</text>';
+      if(dm)g+='<rect x="'+(p.x-22)+'" y="'+(p.y+rr-8)+'" width="44" height="18" rx="9" fill="#1F1E1B"/><text x="'+p.x+'" y="'+(p.y+rr+5)+'" text-anchor="middle" font-size="11" fill="#FBFAF7">'+esc(L.dmTag)+'</text>';
+      var ox=Math.cos(p.a),oy=Math.sin(p.a),lx=p.x+ox*(rr+30),ly=p.y+oy*(rr+22)+(oy<-0.5?-4:0),anc=Math.abs(ox)<0.3?'middle':(ox>0?'start':'end');
+      if(Math.abs(ox)>=0.3)lx=p.x+ox*(rr+10);
+      g+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+anc+'" font-size="12" fill="'+c+'">'+(ro[0]?'<tspan font-weight="600">'+esc(ro[0])+'</tspan> ':'')+esc(ro[1])+'</text>';});
+    return g+'</svg>';
+  }
+  window.v10Render=function(r,T,P){
     var node=document.getElementById('v10-el-read'); if(!node||!r.v10)return '';
-    var L=JSON.parse(node.textContent), v=r.v10, N=function(k){return T.el[k];};
-    var mb=r.pillars[1].branch, season=SEASON[mb], sel=SEL[season], dm=r.dayEl;
-    var sp=sel===dm?'seasonP_same':(GEN[sel]===dm?'seasonP_gen':'seasonP_other');
-    var p1=f(L[sp],{stem:r.dayStem,el:N(dm),season:L.season[season],sel:N(sel)})+' '+f(L[v.strong?'strongP':'weakP'],{res:N(v.res),same:N(dm),pct:r.ratio,level:T.levels[r.level]});
-    var p2a=f(L['use_'+v.yk],{X:N(v.yong),role:L.roles[v.yk]});
-    var p2b=f(L[v.xk],{X:N(v.yong),Y:N(v.xi)});
-    var p3=v.strong?f(L.ji_strong,{A:N(v.ji[0]),B:N(v.ji[1])}):f(L.ji_weak,{A:N(v.ji[0]),B:N(v.ji[1]),roleA:L.roles[v.role[v.ji[0]]],roleB:L.roles[v.role[v.ji[1]]]});
-    var fav=[v.yong,v.xi], notes=[];
-    if(season==='summer')notes.push(f(L.summer,{tail:fav.indexOf('water')>-1?L.summerIn:L.summerOut}));
-    if(season==='winter')notes.push(f(L.winter,{tail:fav.indexOf('fire')>-1?L.winterIn:L.winterOut}));
+    var L=JSON.parse(node.textContent),v=r.v10,N=function(k){return T.el[k];},NM=function(k){return N(k)===CH[k]?'':esc(N(k));};
+    var day=r.pillars[2],labels={year:T.pYear,month:T.pMonth,day:T.pDay,hour:T.pHour};
+    var dmText=T.dm['s'+r.dayIndex];
+    var h='<div class="v10r">';
+    h+='<header class="v10r-hero"><p class="v9-eyebrow red">'+esc(T.pillarsH)+'</p><h3>'+esc(f(L.title,{sb:day.stem+day.branch}))+'</h3><p class="v10r-dm">'+esc(f(L.dm,{stem:r.dayStem,dmText:dmText}))+'</p><div class="v10r-pillars">';
+    r.pillars.forEach(function(p){h+='<div><span class="k">'+esc(labels[p.k])+'</span><b style="color:'+COLOR[p.stemEl]+'">'+p.stem+'</b><b style="color:'+COLOR[p.branchEl]+'">'+p.branch+'</b></div>';});
+    if(!r.hasTime)h+='<div class="na"><span class="k">'+esc(T.pHour)+'</span><b>–</b><b>–</b></div>';
+    h+='</div></header><div class="v10r-grid">';
+    h+='<section class="v10r-card"><p class="v10r-type">【'+esc(L.types[r.level])+'】</p><p class="v10r-p">'+esc(v.strong?L.typeStrong:L.typeWeak)+'</p><p class="v9-label" style="margin:22px 0 0">'+esc(L.wheelH)+'</p>'+wheel(r,L,T);
+    var season=SEASON[r.pillars[1].branch],tips=[];
+    if(season==='summer')tips.push(L.summer); if(season==='winter')tips.push(L.winter);
     var miss=['wood','fire','earth','metal','water'].filter(function(k){return r.pct[k]===0;});
-    if(miss.length){var mf=miss.filter(function(k){return fav.indexOf(k)>-1;});
-      notes.push(f(L.missing,{list:miss.map(N).join(L.sep)})+(mf.length?' '+f(L.missingFav,{list:mf.map(N).join(L.sep)}):''));}
-    function chip(k,lab,solid){var c=COLOR[k];return '<span class="v10-rchip" style="border-color:'+c+';background:'+(solid?c:'transparent')+';color:'+(solid?'#FBFAF7':c)+'"><b>'+CH[k]+'</b>'+(N(k)===CH[k]?'':esc(N(k)))+'<i>'+esc(lab)+'</i></span>';}
-    var h='<div class="v10-read" style="grid-column:1/-1"><h3 class="v9-h3 v10-read-h">'+esc(L.h)+'</h3>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s1H)+'</p><p class="v10-read-p">'+esc(p1)+'</p></div>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s2H)+'</p><div class="v10-rchips">'+chip(v.yong,L.chips.yong,true)+chip(v.xi,L.chips.xi,false)+'</div><p class="v10-read-p">'+esc(p2a)+'</p><p class="v10-read-p">'+esc(p2b)+'</p></div>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s3H)+'</p><div class="v10-rchips">'+chip(v.ji[0],L.chips.ji,false)+chip(v.ji[1],L.chips.ji,false)+'</div><p class="v10-read-p">'+esc(p3)+'</p></div>';
-    if(notes.length)h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s4H)+'</p>'+notes.map(function(n){return '<p class="v10-read-p">'+esc(n)+'</p>';}).join('')+'</div>';
-    h+='<div class="v10-read-sec"><p class="v9-label">'+esc(L.s5H)+'</p><div class="v10-guide">';
-    fav.forEach(function(k,i){var g=L.guide[k],c=COLOR[k];
-      h+='<div class="v10-gcard" style="border-top-color:'+c+'"><p class="v10-gh"><span style="background:'+c+'">'+CH[k]+'</span>'+(N(k)===CH[k]?'':esc(N(k))+' · ')+esc(i?L.chips.xi:L.chips.yong)+'</p><dl>';
-      [['color',g.color],['dir',g.dir],['num',g.num],['season',g.season],['mat',L.mat[k]],['life',g.life]].forEach(function(row){h+='<div><dt>'+esc(L.rows[row[0]])+'</dt><dd>'+esc(row[1])+'</dd></div>';});
-      h+='</dl></div>';});
-    h+='</div></div></div>';
+    var mf=miss.filter(function(k){return v.fav.indexOf(k)>-1;}),mo=miss.filter(function(k){return v.fav.indexOf(k)<0;});
+    if(mf.length)tips.push(f(L.missFav,{list:mf.map(N).join(L.sep)})); if(mo.length)tips.push(f(L.missOther,{list:mo.map(N).join(L.sep)}));
+    if(tips.length)h+='<div class="v10r-tip"><b>'+esc(L.tipH)+'</b>'+tips.map(function(t){return '<p>'+esc(t)+'</p>';}).join('')+'</div>';
+    h+='</section><section class="v10r-card">';
+    h+='<div class="v10r-head"><h4>'+esc(L.favH)+'</h4><span class="v10r-tag on">'+esc(L.favTag)+' · '+v.fav.map(function(k){return CH[k];}).join(' ')+'</span></div>';
+    h+='<div class="v10r-lucky"><div><p>'+esc(L.rows.color)+'</p><div class="sw">'+v.fav.map(function(k){return '<span title="'+esc(L.colors[k])+'"><i style="background:'+SWATCH[k]+'"></i>'+esc(L.colors[k])+'</span>';}).join('')+'</div></div>';
+    h+='<div><p>'+esc(L.rows.dir)+'</p><div class="pl">'+v.fav.map(function(k){return '<span>'+esc(L.dirs[k])+'</span>';}).join('')+'</div></div>';
+    h+='<div><p>'+esc(L.rows.num)+'</p><div class="pl">'+v.fav.map(function(k){return NUMS[k].map(function(n){return '<span>'+n+'</span>';}).join('');}).join('')+'</div></div></div>';
+    h+='<ul class="v10r-list">'+v.fav.map(function(k){return '<li><span class="d" style="background:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.fav[v.role[k]])+'</p><small>'+esc(L.rows.mat)+'：'+esc(L.mat[k])+'</small></div></li>';}).join('')+'</ul>';
+    h+='<div class="v10r-head" style="margin-top:30px"><h4>'+esc(L.avoidH)+'</h4><span class="v10r-tag">'+esc(L.avoidTag)+' · '+v.avoid.map(function(k){return CH[k];}).join(' ')+'</span></div>';
+    h+='<ul class="v10r-list muted">'+v.avoid.map(function(k){return '<li><span class="d" style="border-color:'+COLOR[k]+';color:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.avoid[v.role[k]])+'</p></div></li>';}).join('')+'</ul>';
+    h+='</section></div>';
+    var recs=[];v.fav.slice(0,2).forEach(function(k){(P[k]||[]).forEach(function(p){recs.push(p);});});
+    if(recs.length){h+='<section class="v10r-recs"><p class="v9-label">'+esc(T.recH)+'</p><div class="v9-recs">';
+      recs.forEach(function(p){h+='<a class="v9-rec" href="'+esc(p.url)+'"><span class="v9-square"><img src="'+esc(p.img)+'" alt="'+esc(p.title)+'" loading="lazy"></span><span class="t"><b>'+esc(p.title)+'</b><span>'+esc(p.price)+'</span><span style="color:var(--v9-ink);font-size:14px">'+esc(T.see)+'</span></span></a>';});
+      h+='</div></section>';}
+    h+='<p class="v9-note">'+esc(T.note)+'</p></div>';
     return h;
   };
 })();
 '''
 
 CSS = '''
-.v10-read{margin-top:8px;padding-top:40px;border-top:1px solid var(--v9-line)}
-.v10-read-h{margin:0 0 28px;font-size:clamp(26px,3vw,34px)}
-.v10-read-sec{margin:0 0 34px;max-width:860px}.v10-read-sec .v9-label{margin:0 0 12px}
-.v10-read-p{margin:0 0 12px;font-family:var(--v9-serif);font-size:18px;line-height:1.85;color:var(--v9-ink)}
-.v10-rchips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
-.v10-rchip{display:inline-flex;align-items:center;gap:8px;border:1px solid;border-radius:999px;padding:6px 16px 6px 6px;font-size:14px}
-.v10-rchip b{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--v9-cjk);font-weight:400;background:rgba(255,255,255,.18)}
-.v10-rchip i{font-style:normal;font-size:12px;opacity:.85;letter-spacing:.06em}
-.v10-guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px}
-.v10-gcard{background:var(--v9-paper);border:1px solid var(--v9-line);border-top:3px solid;padding:22px 24px}
-.v10-gh{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-family:var(--v9-serif);font-size:20px}
-.v10-gh span{display:inline-flex;width:32px;height:32px;border-radius:50%;color:#FBFAF7;align-items:center;justify-content:center;font-family:var(--v9-cjk);font-size:15px}
-.v10-gcard dl{margin:0}.v10-gcard dl div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:9px 0;border-top:1px solid var(--v9-line);font-size:14px;line-height:1.65}
-.v10-gcard dt{color:var(--v9-muted)}.v10-gcard dd{margin:0;color:var(--v9-ink)}
+.v9-result:has(.v10r){display:block}
+.v10r{display:grid;gap:22px}
+.v10r-hero{text-align:center;padding:36px 20px 30px;background:var(--v9-paper);border:1px solid var(--v9-line)}
+.v10r-hero h3{margin:8px 0 0;font-family:var(--v9-serif);font-weight:400;font-size:clamp(28px,3.4vw,38px)}
+.v10r-dm{margin:10px 0 0;font-size:15px;color:var(--v9-muted)}
+.v10r-pillars{display:flex;justify-content:center;gap:clamp(16px,4vw,40px);margin-top:24px}
+.v10r-pillars div{display:flex;flex-direction:column;align-items:center;gap:2px}
+.v10r-pillars .k{font-size:12px;color:var(--v9-muted);margin-bottom:4px}
+.v10r-pillars b{font-family:var(--v9-cjk);font-weight:400;font-size:26px;line-height:1.15}.v10r-pillars .na b{color:#C9C3B6}
+.v10r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:22px;align-items:start}
+.v10r-card{background:var(--v9-paper);border:1px solid var(--v9-line);padding:28px clamp(20px,3vw,32px)}
+.v10r-type{margin:0;font-family:var(--v9-serif);font-size:26px;color:var(--v9-red)}
+.v10r-p{margin:10px 0 0;font-size:15px;line-height:1.8;color:var(--v9-body)}
+.v10r-wheel{display:block;width:100%;max-width:420px;margin:6px auto 0;font-family:inherit}
+.v10r-tip{margin-top:14px;padding:16px 18px;background:var(--v9-tint,#F3F0EA)}.v10r-tip b{font-size:13px;color:var(--v9-red)}.v10r-tip p{margin:6px 0 0;font-size:14px;line-height:1.7}
+.v10r-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.v10r-head h4{margin:0;font-family:var(--v9-serif);font-weight:400;font-size:24px}
+.v10r-tag{display:inline-flex;align-items:center;padding:5px 14px;border:1px solid var(--v9-line);border-radius:999px;font-family:var(--v9-cjk);font-size:14px;color:var(--v9-muted)}
+.v10r-tag.on{background:var(--v9-ink);border-color:var(--v9-ink);color:#FBFAF7}
+.v10r-lucky{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:20px 0 6px;border-top:1px solid var(--v9-line);border-bottom:1px solid var(--v9-line)}
+.v10r-lucky>div{padding:16px 6px;text-align:center}.v10r-lucky>div+div{border-left:1px solid var(--v9-line)}
+.v10r-lucky p{margin:0 0 10px;font-size:12px;color:var(--v9-muted);letter-spacing:.04em}
+.v10r-lucky .sw,.v10r-lucky .pl{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.v10r-lucky .sw span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--v9-muted)}
+.v10r-lucky .sw i{display:block;width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+.v10r-lucky .pl span{padding:3px 10px;border:1px solid #E3C9BF;color:var(--v9-red);font-size:13px;border-radius:4px;background:#FBF5F2}
+.v10r-list{list-style:none;margin:16px 0 0;padding:0}
+.v10r-list li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--v9-line)}.v10r-list li:first-child{border-top:0}
+.v10r-list .d{flex:0 0 auto;display:inline-flex;width:38px;height:38px;border-radius:50%;align-items:center;justify-content:center;color:#FBFAF7;font-family:var(--v9-cjk);font-size:18px;border:1.5px solid transparent}
+.v10r-list.muted .d{background:transparent}
+.v10r-list b{font-family:var(--v9-serif);font-weight:400;font-size:15px}
+.v10r-list p{margin:2px 0 0;font-size:14px;line-height:1.7;color:var(--v9-ink)}
+.v10r-list small{display:block;margin-top:6px;font-size:12px;color:var(--v9-muted)}
+.v10r-recs{margin-top:6px}
 '''
