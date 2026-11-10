@@ -6,6 +6,7 @@ ELS = ['wood', 'fire', 'earth', 'metal', 'water']
 R = {}
 
 R['zh'] = {
+    'colon': '：',
     'title': '{sb}日出生的你', 'dm': '日主为{stem} · {dmText}',
     'types': {'strong': '身强型', 'slightlyStrong': '偏强型', 'slightlyWeak': '偏弱型', 'weak': '身弱型'},
     'typeStrong': '你的能量充沛，像一条丰水期的河——不缺力量，缺的是出口。把多余的能量引向才华、财富与事业，运势自然流转起来。',
@@ -29,6 +30,7 @@ R['zh'] = {
 }
 
 R['en'] = {
+    'colon': ': ',
     'title': 'Born on a {sb} day', 'dm': 'Day master {stem} · {dmText}',
     'types': {'strong': 'Strong type', 'slightlyStrong': 'Leaning strong', 'slightlyWeak': 'Leaning gentle', 'weak': 'Gentle type'},
     'typeStrong': 'Your energy runs full, like a river in flood — you don\'t lack strength, you need an outlet. Channel the surplus into talent, wealth and work, and fortune begins to move.',
@@ -52,6 +54,7 @@ R['en'] = {
 }
 
 R['ja'] = {
+    'colon': '：',
     'title': '{sb}の日に生まれたあなた', 'dm': '日主は{stem} · {dmText}',
     'types': {'strong': '身強タイプ', 'slightlyStrong': 'やや強タイプ', 'slightlyWeak': 'やや弱タイプ', 'weak': '身弱タイプ'},
     'typeStrong': 'あなたのエネルギーは満ちあふれ、水量豊かな川のよう。力は足りている、必要なのは出口です。余る力を才能・財・仕事へ向ければ、運は自然にめぐり出します。',
@@ -75,6 +78,7 @@ R['ja'] = {
 }
 
 R['ko'] = {
+    'colon': ': ',
     'title': '{sb}일에 태어난 당신', 'dm': '일주 {stem} · {dmText}',
     'types': {'strong': '신강형', 'slightlyStrong': '약간 신강형', 'slightlyWeak': '약간 신약형', 'weak': '신약형'},
     'typeStrong': '당신의 에너지는 넘쳐흐르는 강물처럼 충만합니다. 힘이 부족한 것이 아니라 출구가 필요합니다. 넘치는 힘을 재능·재물·일로 이끌면 운이 자연스럽게 흐르기 시작합니다.',
@@ -115,6 +119,7 @@ JS = r'''
   var SEASON={'寅':'spring','卯':'spring','辰':'spring','巳':'summer','午':'summer','未':'summer','申':'autumn','酉':'autumn','戌':'autumn','亥':'winter','子':'winter','丑':'winter'};
   var WHEEL=['fire','earth','metal','water','wood'];
   function f(s,o){return String(s).replace(/\{(\w+)\}/g,function(m,k){return o[k]!==undefined?o[k]:m;});}
+  function un(s){return String(s).replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   window.v10Fav=function(r){
     var dm=r.dayEl,res,off,out=GEN[dm],wea=CTL[dm],s=r.score;
@@ -176,7 +181,7 @@ JS = r'''
     h+='<div class="v10r-lucky"><div><p>'+esc(L.rows.color)+'</p><div class="sw">'+v.fav.map(function(k){return '<span title="'+esc(L.colors[k])+'"><i style="background:'+SWATCH[k]+'"></i>'+esc(L.colors[k])+'</span>';}).join('')+'</div></div>';
     h+='<div><p>'+esc(L.rows.dir)+'</p><div class="pl">'+v.fav.map(function(k){return '<span>'+esc(L.dirs[k])+'</span>';}).join('')+'</div></div>';
     h+='<div><p>'+esc(L.rows.num)+'</p><div class="pl">'+v.fav.map(function(k){return NUMS[k].map(function(n){return '<span>'+n+'</span>';}).join('');}).join('')+'</div></div></div>';
-    h+='<ul class="v10r-list">'+v.fav.map(function(k){return '<li><span class="d" style="background:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.fav[v.role[k]])+'</p><small>'+esc(L.rows.mat)+'：'+esc(L.mat[k])+'</small></div></li>';}).join('')+'</ul>';
+    h+='<ul class="v10r-list">'+v.fav.map(function(k){return '<li><span class="d" style="background:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.fav[v.role[k]])+'</p><small>'+esc(L.rows.mat)+esc(L.colon)+esc(un(L.mat[k]))+'</small></div></li>';}).join('')+'</ul>';
     h+='<div class="v10r-head" style="margin-top:30px"><h4>'+esc(L.avoidH)+'</h4><span class="v10r-tag">'+esc(L.avoidTag)+' · '+v.avoid.map(function(k){return CH[k];}).join(' ')+'</span></div>';
     h+='<ul class="v10r-list muted">'+v.avoid.map(function(k){return '<li><span class="d" style="border-color:'+COLOR[k]+';color:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.avoid[v.role[k]])+'</p></div></li>';}).join('')+'</ul>';
     h+='</section></div>';

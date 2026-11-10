@@ -234,6 +234,7 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
 
 
 
+
 /* v10 carousel */
 (function(){document.querySelectorAll('[data-v10-carousel]').forEach(function(c){var tr=c.querySelector('[data-v10-track]');if(!tr)return;var step=function(d){var s=tr.querySelector('.v10-slide');var wdt=s?s.getBoundingClientRect().width+20:300;tr.scrollBy({left:d*wdt,behavior:'smooth'});};var p=c.querySelector('[data-v10-prev]'),n=c.querySelector('[data-v10-next]');if(p)p.addEventListener('click',function(){step(-1)});if(n)n.addEventListener('click',function(){step(1)});});})();
 
@@ -246,6 +247,7 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
   var SEASON={'寅':'spring','卯':'spring','辰':'spring','巳':'summer','午':'summer','未':'summer','申':'autumn','酉':'autumn','戌':'autumn','亥':'winter','子':'winter','丑':'winter'};
   var WHEEL=['fire','earth','metal','water','wood'];
   function f(s,o){return String(s).replace(/\{(\w+)\}/g,function(m,k){return o[k]!==undefined?o[k]:m;});}
+  function un(s){return String(s).replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   window.v10Fav=function(r){
     var dm=r.dayEl,res,off,out=GEN[dm],wea=CTL[dm],s=r.score;
@@ -307,7 +309,7 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
     h+='<div class="v10r-lucky"><div><p>'+esc(L.rows.color)+'</p><div class="sw">'+v.fav.map(function(k){return '<span title="'+esc(L.colors[k])+'"><i style="background:'+SWATCH[k]+'"></i>'+esc(L.colors[k])+'</span>';}).join('')+'</div></div>';
     h+='<div><p>'+esc(L.rows.dir)+'</p><div class="pl">'+v.fav.map(function(k){return '<span>'+esc(L.dirs[k])+'</span>';}).join('')+'</div></div>';
     h+='<div><p>'+esc(L.rows.num)+'</p><div class="pl">'+v.fav.map(function(k){return NUMS[k].map(function(n){return '<span>'+n+'</span>';}).join('');}).join('')+'</div></div></div>';
-    h+='<ul class="v10r-list">'+v.fav.map(function(k){return '<li><span class="d" style="background:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.fav[v.role[k]])+'</p><small>'+esc(L.rows.mat)+'：'+esc(L.mat[k])+'</small></div></li>';}).join('')+'</ul>';
+    h+='<ul class="v10r-list">'+v.fav.map(function(k){return '<li><span class="d" style="background:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.fav[v.role[k]])+'</p><small>'+esc(L.rows.mat)+esc(L.colon)+esc(un(L.mat[k]))+'</small></div></li>';}).join('')+'</ul>';
     h+='<div class="v10r-head" style="margin-top:30px"><h4>'+esc(L.avoidH)+'</h4><span class="v10r-tag">'+esc(L.avoidTag)+' · '+v.avoid.map(function(k){return CH[k];}).join(' ')+'</span></div>';
     h+='<ul class="v10r-list muted">'+v.avoid.map(function(k){return '<li><span class="d" style="border-color:'+COLOR[k]+';color:'+COLOR[k]+'">'+CH[k]+'</span><div><b>'+NM(k)+'</b><p>'+esc(L.avoid[v.role[k]])+'</p></div></li>';}).join('')+'</ul>';
     h+='</section></div>';
