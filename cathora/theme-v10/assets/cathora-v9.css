@@ -276,6 +276,11 @@ body.v9 main{display:block}
 
 
 
+
+
+
+
+
 /* ---------------- v10 ---------------- */
 .v10-nav{border-top:1px solid var(--v9-line);position:relative}
 .v10-nav-in{display:flex;justify-content:center;gap:4px 8px;flex-wrap:wrap}
@@ -424,3 +429,18 @@ body.v9 main{display:block}
 .v10-sign{margin:28px 0 0;font-family:var(--v9-serif);font-style:italic;font-size:18px;color:var(--v9-muted)}
 .v10-care{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:64px;padding-bottom:88px}
 @media (max-width:760px){.v10-founder{grid-template-columns:1fr}.v10-initial{max-width:260px}}
+
+.v10-read{margin-top:8px;padding-top:40px;border-top:1px solid var(--v9-line)}
+.v10-read-h{margin:0 0 28px;font-size:clamp(26px,3vw,34px)}
+.v10-read-sec{margin:0 0 34px;max-width:860px}.v10-read-sec .v9-label{margin:0 0 12px}
+.v10-read-p{margin:0 0 12px;font-family:var(--v9-serif);font-size:18px;line-height:1.85;color:var(--v9-ink)}
+.v10-rchips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.v10-rchip{display:inline-flex;align-items:center;gap:8px;border:1px solid;border-radius:999px;padding:6px 16px 6px 6px;font-size:14px}
+.v10-rchip b{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--v9-cjk);font-weight:400;background:rgba(255,255,255,.18)}
+.v10-rchip i{font-style:normal;font-size:12px;opacity:.85;letter-spacing:.06em}
+.v10-guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px}
+.v10-gcard{background:var(--v9-paper);border:1px solid var(--v9-line);border-top:3px solid;padding:22px 24px}
+.v10-gh{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-family:var(--v9-serif);font-size:20px}
+.v10-gh span{display:inline-flex;width:32px;height:32px;border-radius:50%;color:#FBFAF7;align-items:center;justify-content:center;font-family:var(--v9-cjk);font-size:15px}
+.v10-gcard dl{margin:0}.v10-gcard dl div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:9px 0;border-top:1px solid var(--v9-line);font-size:14px;line-height:1.65}
+.v10-gcard dt{color:var(--v9-muted)}.v10-gcard dd{margin:0;color:var(--v9-ink)}

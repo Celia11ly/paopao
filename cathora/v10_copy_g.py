@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+"""v10.7: keep the E Five Elements text; replace qi5 with fortune / science / invitation. (zh, en, ja, ko)"""
+
+BRAND_G = {
+    'qi5': ('今天的人，正用另一种语言描述着相似的事。物理学说，万物归根结底是能量与振动；生物学发现，人的睡眠、体温与情绪，都随昼夜与四季起伏，身体里藏着一座看不见的「时钟」；心理学也告诉我们，当一个人心里清楚自己想要什么，便更容易看见机会、抓住机会。古人没有这些名词，却早已用「气」与「五行」，说出了同一件事：人与天地，本是同一种节律。',
+            'Today we describe something similar in a different language. Physics tells us that, at bottom, everything is energy and vibration. Biology has found that our sleep, body temperature and moods rise and fall with day and night and with the seasons — that we carry an invisible clock inside us. Psychology tells us that when a person knows clearly what they want, they are quicker to notice opportunity, and to take it. The ancients had none of these words. But with qi and the Five Elements they were saying the same thing: a person and the world move to one rhythm.',
+            '現代の私たちは、別の言葉で似たことを語っています。物理学は、万物は突きつめればエネルギーと振動だと言う。生物学は、眠りや体温や気分が昼夜と四季にあわせて上下し、体のなかに見えない「時計」があることを見つけた。心理学は、自分が何を望んでいるかをはっきり知る人ほど、機会に気づき、つかみやすいと教える。古の人はこうした言葉を持たなかったけれど、「気」と「五行」で、同じことを語っていたのです——人と天地は、ひとつのリズムで動いている、と。',
+            '오늘날 우리는 다른 언어로 비슷한 것을 말합니다. 물리학은 만물이 결국 에너지와 진동이라 하고, 생물학은 잠과 체온과 기분이 낮과 밤, 사계절을 따라 오르내리며 몸 안에 보이지 않는 「시계」가 있음을 발견했습니다. 심리학은 자신이 무엇을 원하는지 분명히 아는 사람일수록 기회를 더 잘 알아보고 붙잡는다고 말합니다. 옛사람들에게는 이런 말이 없었지만, 「기」와 「오행」으로 같은 것을 말하고 있었습니다——사람과 천지는 하나의 리듬으로 움직인다는 것.'),
+    'qi6': ('所以，五行讲的从来不是宿命，而是平衡。五行调和，气便顺；气顺了，心就定；心定了，判断清明，机会与贵人也更容易靠近——古人所说的「好运」，大抵如此。缺什么，就亲近什么：多见青绿以养木，常近水边以润水，佩戴天然的石、木与银，让所需的那一行之气，日日贴身相伴。',
+            'So the Five Elements were never about fate. They are about balance. When your elements are in harmony, your qi flows; when your qi flows, your heart settles; when your heart is settled, you see clearly, and opportunity and the right people find it easier to reach you. That, more or less, is what the ancients meant by good fortune. Draw close to what you lack: keep green things near to nourish wood, spend time by water to replenish water, and wear natural stone, wood and silver, so that the element you need stays with you, close to the skin, every day.',
+            'だから五行が語るのは、宿命ではなく、釣り合いです。五行が調えば気がめぐり、気がめぐれば心が定まり、心が定まれば判断が澄み、機会や良き人も近づきやすくなる——古の人が「幸運」と呼んだものは、おおよそこういうことでした。足りないものに近づくこと。緑を身近に置いて木を養い、水辺で過ごして水を潤し、天然の石や木や銀を身につけて、必要な五行の気を毎日肌のそばに。',
+            '그래서 오행이 말하는 것은 숙명이 아니라 균형입니다. 오행이 조화로우면 기가 순하고, 기가 순하면 마음이 안정되며, 마음이 안정되면 판단이 맑아져 기회와 귀인도 쉽게 다가옵니다——옛사람들이 말한 「행운」이란 대개 이런 것이었습니다. 부족한 것을 가까이하세요. 초록을 곁에 두어 목을 기르고, 물가에 머물러 수를 채우고, 천연의 돌과 나무와 은을 지녀 필요한 오행의 기운이 날마다 살갗 가까이 머물게.'),
+    'qi7': ('你降生的那一刻，正值某一年、某一季、某一个时辰，天地之气以独特的方式交汇，凝成你先天的五行，也凝成你与生俱来的能量与天赋。哪一种气在你身上最为充盈，哪一种还在静静等待被唤醒？识己，是一切好运的开端。',
+            'At the moment you were born — in a certain year, a certain season, a certain hour — the energies of heaven and earth met in a way that will never quite repeat. They settled into your innate elements, and into the energy and gifts you were born with. Which of them runs fullest in you, and which is still quietly waiting to be woken? Knowing yourself is where all good fortune begins.',
+            'あなたが生まれたその瞬間——ある年の、ある季節の、ある時刻に——天地の気はただ一度きりのかたちで交わり、あなたの生まれ持った五行となり、生まれながらのエネルギーと天賦となりました。どの気があなたのなかで最も満ち、どの気がまだ静かに目覚めを待っているのでしょう。己を知ることが、すべての幸運の始まりです。',
+            '당신이 태어난 그 순간——어느 해, 어느 계절, 어느 시각에——천지의 기운은 단 한 번뿐인 모양으로 만나 당신의 타고난 오행이 되었고, 당신이 지니고 온 에너지와 재능이 되었습니다. 어떤 기운이 당신 안에서 가장 충만하고, 어떤 기운이 아직 조용히 깨어나기를 기다리고 있을까요? 자신을 아는 것이 모든 행운의 시작입니다.'),
+}
