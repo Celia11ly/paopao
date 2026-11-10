@@ -263,6 +263,7 @@ body.v9 main{display:block}
 .v9-pages{display:flex;gap:16px;justify-content:center;margin-top:48px;font-size:15px}
 
 
+
 /* ---------------- v10 ---------------- */
 .v10-nav{border-top:1px solid var(--v9-line);position:relative}
 .v10-nav-in{display:flex;justify-content:center;gap:4px 8px;flex-wrap:wrap}
@@ -366,6 +367,7 @@ body.v9 main{display:block}
 .v10-detail-in{max-width:900px;margin:0 auto;padding:88px 20px 96px}
 .v10-dimg{margin:0 0 16px}.v10-dimg img{display:block;width:100%;height:auto}
 .v9-gallery{top:20px}
+@media (max-width:899px){.v9-gallery{position:static!important}}
 /* brand */
 .v10-brand-hero{padding:72px 0 64px;border-bottom:1px solid var(--v9-line)}
 .v10-brand-hero .v9-h1{font-size:clamp(48px,7vw,92px);line-height:1.02}

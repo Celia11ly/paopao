@@ -434,6 +434,7 @@
         "landsP": "For centuries, people have climbed these stone steps. Swipe to enter the story of each place.",
         "prev": "Previous",
         "next": "Next",
+        "blessEmpty": "Pieces for this blessing are on their way. Leave your email and we will tell you first.",
         "heroCta1": "Shop all pieces",
         "heroCta2": "Shop by blessing"
       },
@@ -492,6 +493,8 @@
         "p4": "We carry that belief to you. Wood that has gathered its fragrance for decades. Seeds named for the tree where the Buddha awoke. Stones the mountain kept in its dark heart for ten thousand years — each long believed to hold a blessing, a protection, a quiet turning toward the good.",
         "p5": "A circle has no beginning and no end. Neither does good fortune. It never stays; it only moves — from hand to hand, from one wish to the next. Wear it, and let it move toward you.",
         "p6": "We cannot promise you luck. But we know where it has always been waited for: in stillness, in intention, in a small circle of beads resting against the pulse of your wrist.",
+        "pc": "Cathora carries that wish to you. Every piece comes from a sacred land and holds a single blessing, and part of every purchase returns to the temples that keep the tradition alive.",
+        "teaserH": "A blessing should have an origin.",
         "qiH": "Qi and the Five Elements",
         "q1": "Everything breathes. The mountain breathes in mist. The river breathes in light. A stone asleep for ten thousand years breathes so slowly that only the patient can hear it. The ancient Chinese called this breath qi, and believed it moves through all things — through the earth, through the stars, through you.",
         "q2": "Water nourishing wood, wood feeding fire, fire returning to earth, earth giving birth to metal, metal calling back the water — five elements in an endless wheel, and every life turning within it. When the wheel turns your way, they called it good fortune.",
@@ -530,25 +533,25 @@
         "health": {
           "name": "Health",
           "line": "For a body at ease, and breath that flows.",
-          "desc": "The ancients said a person breathes with heaven and earth. Wood brings growth, water brings nourishment — these pieces lean on both, for steady sleep, a lighter step, and a little strength to spare each day.",
+          "desc": "The ancients believed a body at ease brings a heart at peace. For steady sleep, a lighter step, and strength to spare for the people and things you love.",
           "char": "康"
         },
         "career": {
           "name": "Career",
           "line": "For a clear road, and work that bears fruit.",
-          "desc": "Water stands for wisdom, earth for trust, fire for the courage to begin. For an interview, a promotion, a new venture or a change of road — a reminder to keep close at hand.",
+          "desc": "For an interview, a promotion, a new venture or a change of road. May the way ahead be clear, and your work bear fruit.",
           "char": "业"
         },
         "wealth": {
           "name": "Wealth",
           "line": "For abundance that flows like water — steady, and long.",
-          "desc": "Metal gives birth to water, and water is wealth. The warm light of sunstone and the clear shine of silver have long been worn to invite abundance — not sudden riches, but a stream that keeps on flowing.",
+          "desc": "Not sudden riches — abundance that flows like water, steady and long, that arrives and stays.",
           "char": "财"
         },
         "love": {
           "name": "Love",
           "line": "For the thread that ties two people.",
-          "desc": "The Chinese believe in yuan — an invisible red thread already tied between two people. The warmth of fire and the softness of water, for those still waiting, and those holding on.",
+          "desc": "The Chinese believe in yuan — an invisible red thread already tied between two people. For those still waiting, and those holding on.",
           "char": "缘"
         },
         "peace": {
@@ -560,7 +563,7 @@
         "retrograde": {
           "name": "Retrograde Protection",
           "line": "For the seasons when everything goes sideways.",
-          "desc": "The Book of Changes says: when things reach their end, they change; when they change, they flow again. When one thing after another goes wrong, metal's resolve and earth's steadiness remind you to stand firm and wait — the wheel will turn back.",
+          "desc": "The Book of Changes says: when things reach their end, they change; when they change, they flow again. When one thing after another goes wrong, stand steady and wait — the wheel will turn back.",
           "char": "转"
         }
       },

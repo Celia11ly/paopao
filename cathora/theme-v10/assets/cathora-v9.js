@@ -213,5 +213,6 @@ function baziCompute(y, m, d, hh, mm, tzOffsetMin) {
 })();
 
 
+
 /* v10 carousel */
 (function(){document.querySelectorAll('[data-v10-carousel]').forEach(function(c){var tr=c.querySelector('[data-v10-track]');if(!tr)return;var step=function(d){var s=tr.querySelector('.v10-slide');var wdt=s?s.getBoundingClientRect().width+20:300;tr.scrollBy({left:d*wdt,behavior:'smooth'});};var p=c.querySelector('[data-v10-prev]'),n=c.querySelector('[data-v10-next]');if(p)p.addEventListener('click',function(){step(-1)});if(n)n.addEventListener('click',function(){step(1)});});})();
