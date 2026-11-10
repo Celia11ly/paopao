@@ -496,7 +496,7 @@
         "p6": "We cannot promise you luck. But we know where it has always been waited for: in stillness, in intention, in a small circle of beads resting against the pulse of your wrist.",
         "pc": "Cathora carries that wish to you. Every piece comes from a sacred land and holds a single blessing, and part of every purchase returns to the temples that keep the tradition alive.",
         "teaserH": "A story before the object.",
-        "qiH": "The Five Elements: a way of seeing the world.",
+        "qiH": "The Five Elements: the breathing of heaven and earth.",
         "q1": "Everything breathes. The mountain breathes in mist. The river breathes in light. A stone asleep for ten thousand years breathes so slowly that only the patient can hear it. The ancient Chinese called this breath qi, and believed it moves through all things — through the earth, through the stars, through you.",
         "q2": "Water nourishing wood, wood feeding fire, fire returning to earth, earth giving birth to metal, metal calling back the water — five elements in an endless wheel, and every life turning within it. When the wheel turns your way, they called it good fortune.",
         "q3": "So we choose each material by its element and by the energy it has long been said to carry. The Book of Changes says nothing stays still: fortune rises, falls, and rises again. A bracelet cannot hold back the tide. But each time it warms against your skin, it can remind you to turn with it — toward the light.",
@@ -521,11 +521,30 @@
         "s3": "The Book of Changes says: one yin, one yang — that is the Way. All things move between fullness and emptiness, and fortune is no different: it never stays, it only passes through. A wish cannot hold on to luck. But in the moment of wishing, a person grows still — and so, when luck passes by, they recognise it.",
         "s4": "CATHORA begins in these places. Each collection belongs to a sacred land; each piece tells you its origin, its element and its meaning. Natural wood, stone and silver, in simple forms made to be worn every day.",
         "s5": "We do not promise luck. We only want an old wish to have a quiet place in your life. Keep a wish close.",
-        "qiQuote": "\"All things carry yin and embrace yang; through the blending of breath, they find harmony.\" — Laozi",
-        "qi1": "The ancients used wood, fire, earth, metal and water to explain how all things grow and change. Each gives rise to another, in an endless cycle. The body is a small heaven and earth: as the breath of the world turns, a person's breath rises and falls with it.",
-        "qi2": "We choose the material and name of each piece by its element, and you can begin from your own elements to find the piece that is yours. Good fortune is not seized; it is welcomed. When the heart is settled and the breath is even, it comes of its own accord.",
+        "qiQuote": "\"Heaven has five phases — water, fire, metal, wood, earth. Each in its season nurtures and transforms, and so all things are made.\" — Kongzi Jiayu",
+        "qi1": "The Five Elements are not five substances but five xing — five ways of moving. Three thousand years ago, the Book of Documents put it like this: water soaks downward; fire flares upward; wood bends and straightens; metal yields and is reshaped; earth receives the seed and gives the harvest. The ancients were not looking at things themselves, but at how things change.",
+        "qi2": "Between the five, there is giving rise and there is holding back. Wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood. And wood parts earth, earth dams water, water quenches fire, fire melts metal, metal cuts wood. Giving rise is generosity; holding back is restraint. With only generosity, things would grow wild and lose their order; with only restraint, they would wither. Heaven and earth endure because every force is both supported and contained. This is what the Chinese call he, harmony — not the absence of conflict, but a sense of measure within it.",
         "lede": "Bringing the wishes of China's sacred mountains into everyday life.",
-        "s4b": "A circle has no beginning and no end. A ring of beads is a small universe of its own: always returning, never ceasing."
+        "s4b": "A circle has no beginning and no end. A ring of beads is a small universe of its own: always returning, never ceasing.",
+        "qi3": "The ancients believed heaven and humankind are one: the body is a small heaven and earth. Liver is wood, heart is fire, spleen is earth, lungs are metal, kidneys are water; the seasons and the directions each belong to an element too. As the breath of the world turns, a person's breath rises and falls with it. What we call fortune is only the relationship between you and the rhythm of the world — move with the season and things flow; move against it and they stall. The Yellow Emperor's Classic advises: in spring and summer, nourish yang; in autumn and winter, nourish yin. To move in step is itself a practice.",
+        "qi4": "The year, month, day and hour of a person's birth each correspond to a pair of heavenly stems and earthly branches — eight characters in all, the bazi. Among those eight, some elements are abundant and some are scarce. The ancients did not call this fate. They called it endowment: the particular breath you were born carrying. What is too strong may be eased; what is weak may be supported. Balance is not about changing your destiny. It is about knowing it — where you come from, what you lack, and where you are going.",
+        "qi5": "So we choose each piece's material and name by its element: the sunstone of First Light is fire, the wood of Daily Pause is wood, the chalcedony of Still Tide is water, Snow Summit is metal, and Enduring Form, shaped as a mountain, is earth. You can start from your own elements and find the piece that supplies what you lack — or simply choose the one that settles your heart. Good fortune is not seized; it is welcomed. When the heart is settled and the breath is even, it comes of its own accord.",
+        "elCardsH": "Each element, its own virtue",
+        "el_water_m": "Soaks downward",
+        "el_water_a": "Winter · North · Kidneys · Wisdom",
+        "el_water_p": "Water benefits all things and does not contend. It teaches softness, and persistence — the softest thing can wear through the hardest.",
+        "el_wood_m": "Bends and straightens",
+        "el_wood_a": "Spring · East · Liver · Benevolence",
+        "el_wood_p": "Wood grows upward and roots downward. However high the branches reach, the roots must go as deep.",
+        "el_fire_m": "Flares upward",
+        "el_fire_a": "Summer · South · Heart · Propriety",
+        "el_fire_p": "Fire gives light and warmth. It teaches passion, and this: when one lamp lights another, it loses none of its own light.",
+        "el_earth_m": "Sows and reaps",
+        "el_earth_a": "Late summer · Centre · Spleen · Trust",
+        "el_earth_p": "Earth carries everything and says nothing. Seasons turn; it is always there. Great virtue bears all things.",
+        "el_metal_m": "Yields and is reshaped",
+        "el_metal_a": "Autumn · West · Lungs · Righteousness",
+        "el_metal_p": "Metal becomes a vessel only through a thousand blows of the hammer. It teaches resolve, and letting go — autumn drops its leaves for the sake of spring."
       },
       "founder": {
         "eyebrow": "The founder · 主理人",
@@ -535,10 +554,15 @@
         "f1": "As a child, I followed my grandmother each spring to a temple in the mountains, up the stone steps one at a time. The mountain was quiet. All I could hear was the bell, and my own breathing.",
         "f2": "On the way down, she tied a red thread around my wrist. Wear this, she said. It keeps you safe. I asked how a piece of string could keep anyone safe. She smiled. \"The string can't. The heart can.\"",
         "f3": "It took me many years to understand. I left home to study and to work, and moved many times. The red thread never shielded me from anything. But in every uncertain moment, it reminded me that someone had once held me in their thoughts like that.",
-        "f4": "The Buddhists say the world we see is born of the mind; the Taoists speak of fasting the heart. Whatever protects us, it is always the heart that is being protected. When the heart is settled, the road becomes clear; when the heart is at peace, fortune follows. The object is only a doorway. The real prayer lives in the person who wears it.",
-        "f5": "CATHORA makes doorways like that: with an origin you can name, a form that rewards a close look, and room for meaning of your own.",
-        "f6": "I cannot make a wish for you. But I hope that when you put it on, you think of someone who once prayed for you — or become the one who prays for someone else.",
-        "sign": "— The founder of Cathora"
+        "f4": "The winter my grandmother died, I went back to that mountain alone. The stone steps were the same steps; there was just no one beside me. I stood in front of the main hall for a long time, not knowing what to ask for. An old monk sweeping the courtyard came over and asked, \"What have you come to ask for?\" I said I didn't know. He nodded. \"Not knowing is fine too.\"",
+        "f5": "He pointed to the mountain behind him. \"Most people come here to ask for something — safety, money, love. Look at this mountain. It asks for nothing, so it has everything. When the clouds come, it holds them; when they go, it doesn't hold on.\"",
+        "f6": "On the way down I remembered a line from the Tao Te Ching: \"In learning, one gains a little every day; in the Way, one lets go a little every day.\" Seeking knowledge is adding; seeking the Way is subtracting. Maybe making a wish was never about getting more. Maybe in the moment you say it, you set down everything extra — until only the one thing you truly care about remains.",
+        "sign": "— The founder of Cathora",
+        "fq": "\"The mountain asks for nothing, so it has everything.\"",
+        "f7": "The Buddhists say the world we see is born of the mind. Zhuangzi spoke of the fasting of the heart: emptiness is the fasting of the heart. Only when the heart is empty can good things come in. Whatever protects us, it is always the heart that is being protected: when the heart is settled, the road becomes clear; when the heart is at peace, fortune follows.",
+        "f8": "The Chinese say that objects carry the Way. There is nothing mysterious about a thread or a string of beads. What is mysterious is the intention a person places in it — and the quiet steadiness that intention grows into, day after day, as it is worn. An old saying goes: a person nourishes the jade, and the jade nourishes the person. As you wear it, it keeps you company, and slowly becomes part of you.",
+        "f9": "That is the kind of object CATHORA wants to make: one with an origin you can name, a form that rewards a close look, and room for meaning of your own. It doesn't ask for anything on your behalf. It only touches your wrist lightly when the day gets loud, and reminds you: come back.",
+        "f10": "I cannot make a wish for you. But I hope that when you put it on, you think of someone who once prayed for you — or become the one who prays for someone else. A circle has no beginning and no end. Neither does a blessing."
       },
       "care": {
         "h1": "Ritual & care",
@@ -561,19 +585,19 @@
           "name": "Career",
           "line": "For a clear road, and work that bears fruit.",
           "desc": "For an interview, a promotion, a new venture or a change of road. May the way ahead be clear, and your work bear fruit.",
-          "char": "业"
+          "char": "業"
         },
         "wealth": {
           "name": "Wealth",
           "line": "For abundance that flows like water — steady, and long.",
           "desc": "Not sudden riches — abundance that flows like water, steady and long, that arrives and stays.",
-          "char": "财"
+          "char": "財"
         },
         "love": {
           "name": "Love",
           "line": "For the thread that ties two people.",
           "desc": "The Chinese believe in yuan — an invisible red thread already tied between two people. For those still waiting, and those holding on.",
-          "char": "缘"
+          "char": "緣"
         },
         "peace": {
           "name": "Peace & Safety",
@@ -585,7 +609,7 @@
           "name": "Retrograde Protection",
           "line": "For the seasons when everything goes sideways.",
           "desc": "The Book of Changes says: when things reach their end, they change; when they change, they flow again. When one thing after another goes wrong, stand steady and wait — the wheel will turn back.",
-          "char": "转"
+          "char": "轉"
         }
       },
       "prom": {
