@@ -444,8 +444,8 @@
         "sizeM": "M · 16.5 cm (wrist 14.5–15.5 cm)",
         "sizeL": "L · 18 cm (wrist 16–17 cm)",
         "sizeHelp": "Not sure? Measure your wrist with a soft tape and add 1.5 cm.",
-        "trust1": "Worldwide shipping · dispatched in 1–3 business days",
-        "trust2": "30-day returns",
+        "trust1": "Worldwide shipping · dispatched from China in 1–3 business days",
+        "trust2": "Free standard shipping over SGD 200 · 30-day returns",
         "trust3": "Gift-boxed in rice paper, with an origin card",
         "blessFor": "Blessing",
         "tabStory": "Meaning & story",
@@ -455,22 +455,22 @@
         "tabCare": "Ritual & care",
         "tabBox": "Packaging",
         "tabFaq": "FAQ",
-        "shipIntro": "Every order leaves our studio in Singapore within 1–3 business days, with tracking.",
+        "shipIntro": "Every piece is finished and packed by hand in China, dispatched within 1–3 business days, with full tracking.",
         "shipRegion": "Region",
         "shipMethod": "Method",
         "shipTime": "Delivery",
         "shipCost": "Cost",
         "shipSG": "Singapore",
-        "shipIntl": "International *",
-        "shipIntlList": "* US, Canada, UK, major EU countries, Australia, New Zealand, Japan, Korea, Hong Kong, Macau, Taiwan, Southeast Asia and the UAE — 30 countries and regions.",
+        "shipIntl": "Worldwide *",
+        "shipIntlList": "* Singapore, US, Canada, UK, major EU countries, Australia, New Zealand, Japan, Korea, Hong Kong, Macau, Taiwan, Southeast Asia and the UAE — 31 countries and regions. Standard parcels travel by postal or dedicated line; express by DHL or FedEx.",
         "shipStd": "Standard",
         "shipExp": "Express",
         "shipSGstd": "2–4 business days",
         "shipSGexp": "1–2 business days",
         "shipIstd": "7–15 business days",
         "shipIexp": "3–7 business days",
-        "shipNote": "Shipping is shown in your local currency at checkout. Some countries may charge import duties, payable by the recipient.",
-        "returns": "Within 30 days of delivery, unworn pieces in their original packaging (with the origin card) can be returned or exchanged. Please contact us first for the return address. We cover return shipping for any quality issue. Custom-sized pieces are final sale.",
+        "shipNote": "Shipping is shown in your local currency at checkout. Cross-border parcels may be subject to import duties or VAT, payable by the recipient under local rules. Holidays and customs clearance can add a few days.",
+        "returns": "Within 30 days of delivery, unworn pieces in their original packaging (with the origin card) can be returned or exchanged. Please email us first; once approved, send the piece to the address we provide. For change-of-mind returns, international return shipping is paid by the customer. If your piece arrives damaged, wrong or faulty, send us photos within 7 days of delivery and we will replace it or refund you in full — no return needed. Custom-sized pieces are final sale. Refunds are issued to the original payment method within 5 business days of receiving the return.",
         "care1": "The first time: in the morning, facing the light, take one breath and hold your wish in mind.",
         "care2": "Take it off to bathe, swim or exercise. Keep it away from perfume and cleaning products.",
         "care3": "Wipe gently with a soft dry cloth. Silver can be brought back with a polishing cloth.",
@@ -478,7 +478,8 @@
         "box": "Each piece is wrapped in rice paper and set in a cloth gift box, with an origin card telling you which sacred land it comes from, its element, and the blessing it carries. Ready to give, no extra wrapping needed.",
         "detailH": "In detail",
         "detailP": "A closer look at texture, light, and how it wears.",
-        "blessingTagsH": "Blessings for this piece"
+        "blessingTagsH": "Blessings for this piece",
+        "shipFree": "Free over SGD 200"
       },
       "brand": {
         "eyebrow": "Our Story · 品牌故事",
@@ -494,8 +495,8 @@
         "p5": "A circle has no beginning and no end. Neither does good fortune. It never stays; it only moves — from hand to hand, from one wish to the next. Wear it, and let it move toward you.",
         "p6": "We cannot promise you luck. But we know where it has always been waited for: in stillness, in intention, in a small circle of beads resting against the pulse of your wrist.",
         "pc": "Cathora carries that wish to you. Every piece comes from a sacred land and holds a single blessing, and part of every purchase returns to the temples that keep the tradition alive.",
-        "teaserH": "A blessing should have an origin.",
-        "qiH": "Qi and the Five Elements",
+        "teaserH": "A prayer sent from far away.",
+        "qiH": "The Way follows nature",
         "q1": "Everything breathes. The mountain breathes in mist. The river breathes in light. A stone asleep for ten thousand years breathes so slowly that only the patient can hear it. The ancient Chinese called this breath qi, and believed it moves through all things — through the earth, through the stars, through you.",
         "q2": "Water nourishing wood, wood feeding fire, fire returning to earth, earth giving birth to metal, metal calling back the water — five elements in an endless wheel, and every life turning within it. When the wheel turns your way, they called it good fortune.",
         "q3": "So we choose each material by its element and by the energy it has long been said to carry. The Book of Changes says nothing stays still: fortune rises, falls, and rises again. A bracelet cannot hold back the tide. But each time it warms against your skin, it can remind you to turn with it — toward the light.",
@@ -511,7 +512,18 @@
         "founderP": "Why these mountains, why jewelry, and what is worth carrying down from them.",
         "founderLink": "The founder's perspective →",
         "creditsH": "Image & cultural sources",
-        "creditsP": "Photographs of the sacred lands come from Wikimedia Commons and are used under their respective licenses, cropped for display. No institutional endorsement is implied."
+        "creditsP": "Photographs of the sacred lands come from Wikimedia Commons and are used under their respective licenses, cropped for display. No institutional endorsement is implied.",
+        "n1": "Long ago, travellers from the West crossed snow and desert to reach a land of silk, of tea, of mountains lost in mist. They called it Cathay.",
+        "n2": "In Latin, ora means: pray.",
+        "n3": "Cathora — a prayer sent from far away. It set out from the East, followed the old roads for a very long time, and came to rest on your wrist.",
+        "s1": "Everything is connected. A breath of wind, a fall of rain, a stranger passing by — nothing is by chance. The Chinese call it yuan: when the thread is drawn, a meeting begins.",
+        "s2": "Zhuangzi wrote: heaven and earth were born with me, and the ten thousand things and I are one. The stone in the mountain, the wood in the forest, the sand by the sea grow quietly through time — waiting, too, to meet someone.",
+        "s3": "For centuries, people have walked into old temples, lit a stick of incense, and made a wish. A wish does not change fate. But in the moment of wishing, a person grows still — and sees, at last, what they truly want.",
+        "s4": "That moment is what Cathora keeps. A ring of beads is a circle: no beginning, no end, always returning — like the seasons, like the tide, like fortune, which comes and goes, and comes again.",
+        "s5": "We cannot promise you luck. We only place an old wish, gently, on your wrist. Each time you touch it, it brings you back to yourself.",
+        "qiQuote": "\"All things carry yin and embrace yang; through the blending of breath, they find harmony.\" — Laozi",
+        "qi1": "The ancients believed one breath runs through all things — yin and yang, stillness and motion, fullness and emptiness. The five elements give rise to one another without end. Fortune is the same: it rises and falls, and never stands still.",
+        "qi2": "Good fortune is not seized. It is welcomed. When the heart is settled and the breath is even, it comes of its own accord."
       },
       "founder": {
         "eyebrow": "The founder · 主理人",
@@ -569,12 +581,12 @@
       },
       "prom": {
         "p1": {
-          "t": "Worldwide shipping",
-          "l": "30 countries and regions. Standard 7–15 days, express 3–7."
+          "t": "Shipped worldwide from China",
+          "l": "31 countries and regions. Free standard shipping over SGD 200."
         },
         "p2": {
           "t": "30-day returns",
-          "l": "Unworn, in original packaging, within 30 days."
+          "l": "Unworn, in original packaging, within 30 days. Damaged or wrong items replaced free."
         },
         "p3": {
           "t": "An origin in every box",
